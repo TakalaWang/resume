@@ -20,16 +20,16 @@ const otherProjects = projects.slice(8);
 
     <main id="top">
       <section class="hero">
-        <div class="hero-main"><p class="hero-kicker">{profile.chineseName} <span>·</span> {profile.englishName}</p><h1>Building useful<br /><span>systems.</span></h1><p class="hero-role">{profile.title}</p><p class="hero-lede">我把 AI 研究、產品工程與基礎設施整合成真正能被使用的系統。這裡整理我在開源、研究、工作與團隊合作中的實際貢獻。</p><div class="hero-actions"><a class="button primary" href="#work">看精選作品 ↓</a><a class="button" href={profile.email ? `mailto:${profile.email}` : '#contact'}>聯絡我 ↗</a></div></div>
-        <aside class="hero-aside"><span class="eyebrow">AT A GLANCE</span><div class="hero-stat"><strong>7+</strong><span>產品與研究系統</span></div><div class="hero-stat"><strong>100k+</strong><span>平台使用者</span></div><div class="hero-stat"><strong>2025</strong><span>M.S. · NYCU</span></div><div class="hero-art" aria-hidden="true"><b></b></div></aside>
+        <div class="hero-main"><p class="hero-kicker">{profile.title}</p><h1>{profile.chineseName}<span>{profile.englishName}</span></h1><p class="hero-thesis">Building useful systems.</p><p class="hero-lede">我把 AI 研究、產品工程與基礎設施整合成真正能被使用的系統。這裡整理我在開源、研究、工作與團隊合作中的實際貢獻。</p><div class="hero-actions"><a class="button primary" href="#work">看精選作品 ↓</a><a class="button" href={profile.email ? `mailto:${profile.email}` : '#contact'}>聯絡我 ↗</a></div></div>
+        <div class="hero-art" aria-hidden="true"><b></b></div>
       </section>
 
       <section id="profile" class="section profile-section">
         <div class="section-head"><h2>個人資料</h2><p>履歷、聯絡方式與專業定位。</p></div>
         <div class="profile-grid">
           <div class="profile-intro"><p class="profile-name">{profile.chineseName}</p><p class="profile-english">{profile.englishName}</p><h3>{profile.title}</h3><p>軟體工程師與 AI 研究開發者，專注於把模型、產品與可靠的系統整合成真正可使用的工具。</p></div>
-          <dl class="profile-facts"><div><dt>所在地</dt><dd>{profile.location}</dd></div><div><dt>電話</dt><dd><a href={`tel:${profile.phone.replaceAll(' ', '')}`}>{profile.phone}</a></dd></div><div><dt>Email</dt><dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd></div></dl>
-          <div class="profile-links"><h3>線上資料</h3><a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={profile.website} target="_blank" rel="noreferrer">Website ↗</a></div>
+          <dl class="profile-facts"><div><dt>目前學歷</dt><dd>{education[0].title}<br />{education[0].school}</dd></div><div><dt>學士背景</dt><dd>{education[1].school}<br />Computer Science · Top 6%</dd></div><div><dt>主要方向</dt><dd>AI systems · Product engineering · Open source</dd></div></dl>
+          <div class="profile-links"><h3>線上資料</h3><a href={`mailto:${profile.email}`}>Email ↗</a><a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
         </div>
         <div class="credential-strip"><div><strong>M.S.</strong><span>NYCU · Computer Science</span></div><div><strong>B.S.</strong><span>NTNU · Computer Science</span></div><div><strong>SLaTE 2025</strong><span>Paper accepted</span></div><div><strong>ICPC</strong><span>Bronze · 2022, 2023</span></div></div>
       </section>
