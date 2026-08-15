@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ProjectShowcase from './ProjectShowcase';
 import ThemeToggle from './ThemeToggle';
-import ProjectBrowser from './ProjectBrowser';
 import { profile } from '../data/resume';
 import type { Lang } from '../data/siteCopy';
 
@@ -12,22 +12,12 @@ const homePath = `${basePath}${lang === 'en' ? '/en/' : '/'}`;
 ---
 
 <Layout title={`${profile.displayName} — ${lang === 'en' ? 'All Work' : '所有作品'}`} lang={lang === 'en' ? 'en' : 'zh-Hant'}>
-  <div class="observatory-shell">
-    <header class="observatory-header">
-      <a class="brand-mark" href={homePath}>{profile.chineseName} / {profile.displayName.toUpperCase()}</a>
-      <nav class="header-nav" aria-label="Archive navigation"><a href={homePath}>{lang === 'en' ? 'Back home' : '回到首頁'}</a></nav>
-      <div class="header-actions"><a class="language-switch" href={`${basePath}${lang === 'en' ? '/' : '/en/'}`}>{lang === 'en' ? '中文' : 'EN'}</a><ThemeToggle client:load /></div>
-    </header>
-
+  <div class="resume-shell archive-shell">
+    <header class="site-header"><a class="site-brand" href={homePath}><span class="brand-dot" aria-hidden="true"></span>{profile.chineseName}<span class="brand-slash">/</span>{profile.displayName}</a><nav class="site-nav" aria-label="Archive navigation"><a href={homePath}>{lang === 'en' ? 'Back home' : '回到首頁'}</a></nav><div class="site-actions"><a href={`${basePath}${lang === 'en' ? '/' : '/en/'}`}>{lang === 'en' ? '中文' : 'EN'}</a><ThemeToggle client:load /></div></header>
     <main>
-      <section class="archive-heading" aria-labelledby="archive-title">
-        <h1 id="archive-title">{lang === 'en' ? 'All work.' : '所有作品。'}</h1>
-      </section>
-      <section class="archive-list" aria-label={lang === 'en' ? 'All projects' : '所有專案'}>
-        <ProjectBrowser client:load lang={lang} />
-      </section>
+      <section class="archive-intro"><span class="section-label">{lang === 'en' ? 'Complete work index' : '完整作品索引'}</span><h1>{lang === 'en' ? 'All work' : '所有作品'}</h1><p>{lang === 'en' ? 'Select a project to inspect the shipped surface, contribution, and result.' : '選擇一個作品，查看實際頁面、我的貢獻與成果。'}</p></section>
+      <section class="archive-showcase scroll-reveal" aria-label={lang === 'en' ? 'All projects' : '所有專案'}><ProjectShowcase client:load lang={lang} /></section>
     </main>
-
-    <footer class="observatory-footer"><span class="footer-meta">© 2026 {profile.displayName}</span><span class="footer-links"><a href={`mailto:${profile.email}`}>{profile.email}</a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a></span></footer>
+    <footer class="site-footer"><span>© 2026 {profile.displayName}</span><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></footer>
   </div>
 </Layout>

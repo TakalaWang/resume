@@ -41,7 +41,7 @@ Visitors scan the site quickly on desktop or mobile, then follow project links, 
 - Primary role: Software Engineer · AI Researcher.
 - Direct contact: ccwangtakala@gmail.com and LinkedIn.
 - The visual redesign must avoid a presentation/PPT feeling and should feel immersive rather than like a grid of slides.
-- The current visual direction is a digital print workbench; do not use star fields or space metaphors.
+- The current visual direction is a personal systems console: live project previews, timeline rows, and direct evidence; do not use star fields, space metaphors, or presentation-deck framing.
 
 ## Evidence on Hand
 

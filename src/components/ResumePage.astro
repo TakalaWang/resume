@@ -1,119 +1,67 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ProjectShowcase from './ProjectShowcase';
 import ThemeToggle from './ThemeToggle';
-import ProjectCard from './ProjectCard.astro';
-import { education, experience, profile, projects, recognition, stack } from '../data/resume';
+import { education, experience, profile, recognition, stack } from '../data/resume';
 import { copy, experienceText, type Lang } from '../data/siteCopy';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = copy[lang];
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const featuredTitles = ['NOJV', 'OnStage TW', 'Speech Examination Platform', 'Hinagiku', 'Cool English'];
-const featuredProjects = featuredTitles.map((title) => projects.find((project) => project.title === title)).filter((project): project is typeof projects[number] => Boolean(project));
 const homePath = `${basePath}${lang === 'en' ? '/en/' : '/'}`;
 const workPath = `${basePath}${lang === 'en' ? '/en/work/' : '/work/'}`;
-const archiveLabel = lang === 'en' ? 'Open the complete work archive' : '開啟完整作品檔案';
+const currentRole = experience[0];
 ---
 
 <Layout title={`${profile.displayName} — ${lang === 'en' ? 'Software Engineer' : '工程師履歷'}`} lang={lang === 'en' ? 'en' : 'zh-Hant'}>
-  <div class="observatory-shell">
-    <header class="observatory-header">
-      <a class="brand-mark" href={homePath}>{profile.chineseName} / {profile.displayName.toUpperCase()}</a>
-      <nav class="header-nav" aria-label="Primary navigation">
-        <a href="#work">{t.nav.work}</a>
-        <a href="#experience">{t.nav.experience}</a>
-        <a href="#contact">{t.nav.contact}</a>
-      </nav>
-      <div class="header-actions">
-        <a class="language-switch" href={`${basePath}${lang === 'en' ? '/' : '/en/'}`}>{t.nav.language}</a>
-        <ThemeToggle client:load />
-      </div>
+  <div class="resume-shell">
+    <header class="site-header">
+      <a class="site-brand" href={homePath}><span class="brand-dot" aria-hidden="true"></span>{profile.chineseName}<span class="brand-slash">/</span>{profile.displayName}</a>
+      <nav class="site-nav" aria-label="Primary navigation"><a href="#work">{t.nav.work}</a><a href="#experience">{t.nav.experience}</a><a href="#contact">{t.nav.contact}</a></nav>
+      <div class="site-actions"><a href={`${basePath}${lang === 'en' ? '/' : '/en/'}`}>{t.nav.language}</a><ThemeToggle client:load /></div>
     </header>
 
     <main>
-      <section class="hero-stage" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <h1 class="hero-title" id="hero-title">{profile.chineseName}<span>{profile.englishName}</span></h1>
-          <p class="hero-role">{t.hero.role}</p>
-          <div class="hero-meta" aria-label="Professional focus">
-            <span>{lang === 'en' ? 'Product engineering' : '產品工程'}</span>
-            <span>{lang === 'en' ? 'AI systems' : 'AI 系統'}</span>
-            <span>{lang === 'en' ? 'Open source' : '開源協作'}</span>
-          </div>
-          <div class="hero-actions">
-            <a class="signal-link" href="#work">{t.hero.work} <span aria-hidden="true">↓</span></a>
-            <a class="signal-link muted" href={`mailto:${profile.email}`}>{profile.email}</a>
-            <a class="signal-link muted" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-          </div>
+      <section class="intro-section" aria-labelledby="intro-title">
+        <div class="intro-copy">
+          <p class="section-label">{profile.title}</p>
+          <h1 id="intro-title">{profile.chineseName}<span>{profile.englishName}</span></h1>
+          <p class="intro-role">{lang === 'en' ? 'I build product systems, AI tools, and open-source software.' : '我把產品系統、AI 工具與開源軟體做成真正能運作的東西。'}</p>
+          <div class="intro-links"><a class="primary-link" href="#work">{t.hero.work}<span aria-hidden="true">↘</span></a><a href={`mailto:${profile.email}`}>{profile.email}</a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div>
         </div>
-
-        <div class="workbench-console" aria-label={lang === 'en' ? 'A layered work file for engineering projects' : '工程作品的分層工作檔案'}>
-          <div class="document-stack" aria-hidden="true">
-            <div class="document-sheet document-sheet-back"></div>
-            <div class="document-sheet document-sheet-mid"></div>
-            <div class="document-sheet document-sheet-front"><span>FILE / 001</span><strong>{lang === 'en' ? 'REAL WORK' : '實際作品'}<br />{lang === 'en' ? 'REAL SYSTEMS' : '真正系統'}</strong><small>TAKALA WANG<br />2026 / ENGINEERING</small></div>
-          </div>
-          <div class="workbench-readout"><strong>{lang === 'en' ? 'OPEN FILE' : '開啟檔案'}</strong>{lang === 'en' ? 'Products, research, open source' : '產品、研究、開源協作'}<br />{lang === 'en' ? 'Five selected records' : '五筆精選紀錄'}</div>
-        </div>
-
-        <p class="scroll-cue">{lang === 'en' ? 'Continue reading the field' : '繼續閱讀觀測紀錄'}</p>
-      </section>
-
-      <section class="section-block" id="profile" aria-labelledby="profile-title">
-        <div class="section-heading">
-          <h2 id="profile-title">{t.profile.title}</h2>
-        </div>
-        <div class="identity-grid">
-          <div>
-            <p class="identity-name">{profile.chineseName}<small>{profile.englishName}</small></p>
-            <p class="identity-role">{profile.title}</p>
-          </div>
-          <dl class="fact-list">
-            <div class="fact-row"><dt>{t.profile.current}</dt><dd>{education[0].title}<br />{education[0].school}</dd></div>
-            <div class="fact-row"><dt>{t.profile.bachelor}</dt><dd>{education[1].school}<br />{t.profile.topSix}</dd></div>
-            <div class="fact-row"><dt>{t.profile.focus}</dt><dd>AI systems · Product engineering · Open source</dd></div>
-          </dl>
+        <div class="status-panel" aria-label={lang === 'en' ? 'Current status' : '目前狀態'}>
+          <div class="status-panel-header"><span>{lang === 'en' ? 'CURRENT STATUS' : '目前狀態'}</span><span class="status-live"><i /> {lang === 'en' ? 'Available' : '可聯絡'}</span></div>
+          <div class="status-role"><span>{lang === 'en' ? 'Working as' : '目前職務'}</span><strong>{currentRole.title.split(' · ')[0]}</strong><a href={currentRole.link} target="_blank" rel="noopener noreferrer">{currentRole.title.split(' · ')[1]} <span aria-hidden="true">↗</span></a></div>
+          <div class="status-route" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <dl class="status-facts"><div><dt>{lang === 'en' ? 'Based in' : '所在地'}</dt><dd>{profile.location}</dd></div><div><dt>{lang === 'en' ? 'Focus' : '方向'}</dt><dd>AI · Product · OSS</dd></div></dl>
         </div>
       </section>
 
-      <section class="section-block" id="work" aria-labelledby="work-title">
-        <div class="section-heading">
-          <h2 id="work-title">{t.work.title}</h2>
-        </div>
-        <div class="project-track">
-          {featuredProjects.map((project, index) => <ProjectCard project={project} lang={lang} index={index + 1} />)}
-        </div>
-        <a class="work-archive-link" href={workPath}><span>{archiveLabel}</span><span aria-hidden="true">↗</span></a>
+      <section class="facts-strip scroll-reveal" aria-label={lang === 'en' ? 'Profile facts' : '個人資料摘要'}>
+        <div><span>{t.profile.current}</span><strong>{education[0].title}</strong><small>{education[0].school}</small></div>
+        <div><span>{t.profile.bachelor}</span><strong>{education[1].title}</strong><small>{education[1].school}</small></div>
+        <div><span>{lang === 'en' ? 'Recognition' : '成果'}</span><strong>SLaTE · ICPC · 客語競賽</strong><small>{lang === 'en' ? 'Research and competition work' : '研究與競賽成果'}</small></div>
       </section>
 
-      <section class="section-block" id="experience" aria-labelledby="experience-title">
-        <div class="section-heading">
-          <h2 id="experience-title">{t.experience.title}</h2>
-        </div>
-        <div class="experience-log">
-          {experience.map((item) => { const localized = experienceText(item, lang); return <article class="experience-entry"><time class="experience-date">{item.date}</time><div><h3>{item.link ? <a href={item.link} target="_blank" rel="noopener noreferrer">{localized.title} ↗</a> : localized.title}</h3><p>{localized.description}</p></div></article>; })}
-        </div>
+      <section class="content-section work-section scroll-reveal" id="work" aria-labelledby="work-title">
+        <div class="section-heading"><div><span class="section-label">01 / {lang === 'en' ? 'Selected work' : '精選作品'}</span><h2 id="work-title">{t.work.title}</h2></div><a class="section-action" href={workPath}>{lang === 'en' ? 'View all work' : '查看全部作品'} <span aria-hidden="true">↗</span></a></div>
+        <ProjectShowcase client:load lang={lang} featured />
       </section>
 
-      <section class="section-block" aria-labelledby="evidence-title">
-        <div class="section-heading">
-          <h2 id="evidence-title">{lang === 'en' ? 'Evidence' : '能力證據'}</h2>
-        </div>
-        <div class="evidence-grid">
-          <div class="evidence-block"><h3>{lang === 'en' ? 'Toolbox' : '技術棧'}</h3>{stack.map(([label, values]) => <div class="stack-line"><strong>{label}</strong><span>{values}</span></div>)}</div>
-          <div class="evidence-block"><h3>{lang === 'en' ? 'Recognition' : '獎項與成果'}</h3>{recognition.map(([label, value]) => <div class="recognition-line"><strong>{label}</strong><span>{value}</span></div>)}</div>
-        </div>
+      <section class="content-section experience-section scroll-reveal" id="experience" aria-labelledby="experience-title">
+        <div class="section-heading"><div><span class="section-label">02 / {lang === 'en' ? 'Timeline' : '工作與研究'}</span><h2 id="experience-title">{t.experience.title}</h2></div></div>
+        <div class="experience-list">{experience.map((item, index) => { const localized = experienceText(item, lang); return <article class="experience-row"><time>{item.date}</time><div><h3>{item.link ? <a href={item.link} target="_blank" rel="noopener noreferrer">{localized.title}<span aria-hidden="true">↗</span></a> : localized.title}</h3><p>{localized.description}</p></div><span class="experience-number">{String(index + 1).padStart(2, '0')}</span></article>; })}</div>
       </section>
 
-      <section class="section-block" id="contact" aria-labelledby="contact-title">
-        <div class="contact-block">
-          <div><h2 id="contact-title">{lang === 'en' ? 'Open a channel.' : '開啟聯絡。'}</h2></div>
-          <div class="contact-channels"><a class="contact-channel" href={`mailto:${profile.email}`}>{profile.email}</a><a class="contact-channel" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
-        </div>
+      <section class="content-section proof-section scroll-reveal" aria-labelledby="proof-title">
+        <div class="section-heading"><div><span class="section-label">03 / {lang === 'en' ? 'Proof' : '能力證據'}</span><h2 id="proof-title">{lang === 'en' ? 'What I work with' : '我使用的工具'}</h2></div></div>
+        <div class="proof-layout"><div class="stack-table">{stack.map(([label, values]) => <div><span>{label}</span><strong>{values}</strong></div>)}</div><div class="recognition-list"><h3>{lang === 'en' ? 'Recognition' : '獎項與成果'}</h3>{recognition.map(([label, value]) => <div><strong>{label}</strong><span>{value}</span></div>)}</div></div>
       </section>
+
+      <section class="contact-section scroll-reveal" id="contact" aria-labelledby="contact-title"><div><span class="section-label">04 / {lang === 'en' ? 'Contact' : '聯絡'}</span><h2 id="contact-title">{lang === 'en' ? 'Let’s build something useful.' : '一起做點真正有用的東西。'}</h2></div><div class="contact-links"><a class="primary-link" href={`mailto:${profile.email}`}>{profile.email}<span aria-hidden="true">↗</span></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></section>
     </main>
 
-    <footer class="observatory-footer"><span class="footer-meta">© 2026 {profile.displayName} · {t.footer.note}</span><span class="footer-links"><a href={profile.website} target="_blank" rel="noopener noreferrer">{t.footer.blog}</a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a></span></footer>
+    <footer class="site-footer"><span>© 2026 {profile.displayName}</span><a href={profile.website} target="_blank" rel="noopener noreferrer">{t.footer.blog} <span aria-hidden="true">↗</span></a></footer>
   </div>
 </Layout>
