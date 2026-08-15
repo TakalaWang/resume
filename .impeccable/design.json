@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-15T11:02:00+08:00",
+  "title": "Design System: Takala Wang Resume Workbench",
+  "extensions": {
+    "colorMeta": {
+      "background": {"role": "neutral", "displayName": "Paper Ground", "canonical": "#e7e2d8", "tonalRamp": ["#d8d1c4", "#e7e2d8", "#f3efe7"]},
+      "foreground": {"role": "neutral", "displayName": "Dark Ink", "canonical": "#172733", "tonalRamp": ["#59656a", "#172733", "#07131b"]},
+      "blue": {"role": "primary", "displayName": "Drafting Blue", "canonical": "#145a78", "tonalRamp": ["#0a3445", "#145a78", "#9bd4e2"]},
+      "yellow": {"role": "secondary", "displayName": "Registration Yellow", "canonical": "#e6b84f", "tonalRamp": ["#8a6b22", "#e6b84f", "#f8e3a0"]}
+    },
+    "typographyMeta": {
+      "display": {"displayName": "Workmark Display", "purpose": "Name, archive, section, and project titles."},
+      "label": {"displayName": "File Mono", "purpose": "Dates, taxonomy, navigation, and work-file metadata."}
+    },
+    "shadows": [{"name": "paper-stack", "value": "10px 12px 0 rgba(23, 39, 51, 0.08)", "purpose": "Separates the layered first-viewport work file from the paper ground."}],
+    "motion": [{"name": "signal-transition", "value": "180ms ease", "purpose": "Links and navigation respond without distracting from reading."}],
+    "breakpoints": [{"name": "mobile", "value": "800px"}, {"name": "compact", "value": "480px"}]
+  },
+  "components": [
+    {"name": "Signal link", "kind": "nav", "refersTo": "signal-link", "description": "A direct action rendered as an editorial file annotation.", "html": "<a class=\"ds-signal-link\" href=\"#work\">VIEW SELECTED WORK <span>↓</span></a>", "css": ".ds-signal-link { display: inline-flex; gap: .65rem; padding: .8rem 0; border-bottom: 1px solid #145a78; color: #172733; font: 500 .7rem/1.5 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; transition: color .18s ease, border-color .18s ease, gap .18s ease; } .ds-signal-link:hover { gap: 1rem; color: #145a78; border-color: #e6b84f; }"},
+    {"name": "Document stack", "kind": "custom", "refersTo": "document-stack", "description": "Three offset paper sheets establish the first viewport's workbench metaphor.", "html": "<div class=\"ds-document-stack\"><div class=\"ds-document-sheet ds-document-sheet-back\"></div><div class=\"ds-document-sheet ds-document-sheet-front\"><span>FILE / 001</span><strong>REAL WORK</strong></div></div>", "css": ".ds-document-stack { position: relative; width: 280px; aspect-ratio: 4 / 5; } .ds-document-sheet { position: absolute; inset: 0; border: 1px solid rgba(23,39,51,.42); background: #f3efe7; box-shadow: 10px 12px 0 rgba(23,39,51,.08); } .ds-document-sheet-back { transform: translate(-18px,18px) rotate(-7deg); background: #d8d1c4; } .ds-document-sheet-front { display: flex; flex-direction: column; justify-content: space-between; padding: 2rem; color: #172733; }"},
+    {"name": "Project entry", "kind": "custom", "refersTo": "project-entry", "description": "A full-width project record joining artifact, contribution, and outcome without a card shell.", "html": "<article class=\"ds-project-entry\"><span class=\"ds-project-beacon\">01</span><h3>NOJV</h3><p>Open-source online judge platform.</p></article>", "css": ".ds-project-entry { display: grid; grid-template-columns: 4rem minmax(0,1fr); gap: 1.5rem; padding: 2.4rem 0 7rem; border-top: 1px solid rgba(23,39,51,.18); } .ds-project-beacon { color: #145a78; font: 600 .64rem/1.5 ui-monospace, monospace; letter-spacing: .08em; } .ds-project-entry h3 { color: #172733; font: 600 clamp(2.6rem,6vw,6.6rem)/.86 'Geist Variable', sans-serif; letter-spacing: -.085em; }"}
+  ],
+  "narrative": {
+    "northStar": "The Digital Print Workbench",
+    "overview": "A paper-first engineering archive where files, annotations, and real artifacts create the page rhythm.",
+    "keyCharacteristics": ["layered work file", "drafting blue and registration yellow", "full-width project records", "quiet editorial motion"],
+    "rules": [{"name": "The Registration Rule", "body": "Blue identifies information; yellow marks a file, a focus state, or attention.", "section": "colors"}],
+    "dos": ["Do use screenshots as source material.", "Do keep contribution and outcome beside the project."],
+    "donts": ["Don't use star fields or space metaphors.", "Don't use rounded card grids."]
+  }
+}

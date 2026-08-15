@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectCard from './ProjectCard.astro';
-import SmoothButton from './ui/smoothui/smooth-button';
 import ThemeToggle from './ThemeToggle';
+import ProjectCard from './ProjectCard.astro';
 import { education, experience, profile, projects, recognition, stack } from '../data/resume';
 import { copy, experienceText, type Lang } from '../data/siteCopy';
 
@@ -11,74 +10,114 @@ const { lang } = Astro.props;
 const t = copy[lang];
 const featuredTitles = ['NOJV', 'OnStage TW', 'Speech Examination Platform', 'Hinagiku', 'Cool English'];
 const featuredProjects = featuredTitles.map((title) => projects.find((project) => project.title === title)).filter((project): project is typeof projects[number] => Boolean(project));
-const midpoint = Math.ceil(experience.length / 2);
 const homePath = lang === 'en' ? '/en/' : '/';
 const workPath = lang === 'en' ? '/en/work/' : '/work/';
+const archiveLabel = lang === 'en' ? 'Open the complete work archive' : '開啟完整作品檔案';
+const archiveCount = lang === 'en' ? `${projects.length} records · products · research · open source` : `${projects.length} 筆紀錄 · 產品 · 研究 · 開源`;
 ---
 
 <Layout title={`${profile.displayName} — ${lang === 'en' ? 'Software Engineer' : '工程師履歷'}`} lang={lang === 'en' ? 'en' : 'zh-Hant'}>
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <header class="flex items-center justify-between border-b border-border py-5">
-      <a class="text-sm font-semibold tracking-tight text-foreground" href={homePath}><span class="mr-2 text-primary">●</span>{profile.chineseName} / {profile.displayName.toUpperCase()}</a>
-      <nav class="flex items-center gap-2 sm:gap-5" aria-label="Primary navigation">
-        <a class="hidden text-sm text-muted-foreground transition hover:text-foreground sm:inline" href="#work">{t.nav.work}</a>
-        <a class="hidden text-sm text-muted-foreground transition hover:text-foreground sm:inline" href="#experience">{t.nav.experience}</a>
-        <a class="hidden text-sm text-muted-foreground transition hover:text-foreground sm:inline" href="#contact">{t.nav.contact}</a>
-        <a class="rounded-full px-2.5 py-1 text-xs font-semibold text-muted-foreground transition hover:bg-muted hover:text-foreground" href={lang === 'en' ? '/' : '/en/'}>{t.nav.language}</a>
-        <ThemeToggle client:load />
+  <div class="observatory-shell">
+    <header class="observatory-header">
+      <a class="brand-mark" href={homePath}>{profile.chineseName} / {profile.displayName.toUpperCase()}</a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#work">{t.nav.work}</a>
+        <a href="#experience">{t.nav.experience}</a>
+        <a href="#contact">{t.nav.contact}</a>
       </nav>
+      <div class="header-actions">
+        <a class="language-switch" href={lang === 'en' ? '/' : '/en/'}>{t.nav.language}</a>
+        <ThemeToggle client:load />
+      </div>
     </header>
 
     <main>
-      <section class="relative flex min-h-[620px] items-center overflow-hidden py-24 sm:py-32">
-        <div class="relative z-10 max-w-3xl">
-          <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.hero.role}</p>
-          <h1 class="text-[clamp(4.5rem,14vw,10rem)] font-semibold leading-[0.82] tracking-[-0.1em] text-foreground">{profile.chineseName}<span class="mt-6 block text-[clamp(1rem,2.2vw,1.75rem)] font-medium tracking-[0.08em] text-primary">{profile.englishName.toUpperCase()}</span></h1>
-          <p class="mt-8 text-2xl font-semibold tracking-tight text-foreground sm:text-4xl">{t.hero.thesis}</p>
-          <div class="mt-8 flex flex-wrap items-center gap-3">
-            <SmoothButton client:load asChild size="lg" variant="default"><a href="#work">{t.hero.work} <span aria-hidden="true">↓</span></a></SmoothButton>
-            <SmoothButton client:load asChild size="lg" variant="outline"><a href={`mailto:${profile.email}`}>{profile.email}</a></SmoothButton>
-            <a class="px-2 text-sm font-medium text-muted-foreground underline decoration-border underline-offset-4 transition hover:text-foreground" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <section class="hero-stage" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 class="hero-title" id="hero-title">{profile.chineseName}<span>{profile.englishName}</span></h1>
+          <p class="hero-role">{t.hero.role}</p>
+          <div class="hero-meta" aria-label="Professional focus">
+            <span>{lang === 'en' ? 'Product engineering' : '產品工程'}</span>
+            <span>{lang === 'en' ? 'AI systems' : 'AI 系統'}</span>
+            <span>{lang === 'en' ? 'Open source' : '開源協作'}</span>
+          </div>
+          <div class="hero-actions">
+            <a class="signal-link" href="#work">{t.hero.work} <span aria-hidden="true">↓</span></a>
+            <a class="signal-link muted" href={`mailto:${profile.email}`}>{profile.email}</a>
+            <a class="signal-link muted" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <div class="pointer-events-none absolute -right-24 top-1/2 size-72 -translate-y-1/2 rounded-full border border-primary/20 opacity-50 sm:-right-10" aria-hidden="true"><div class="absolute inset-7 rounded-full border border-primary/15"></div><div class="absolute inset-20 rounded-full bg-primary/30 blur-2xl"></div></div>
+
+        <div class="workbench-console" aria-label={lang === 'en' ? 'A layered work file for engineering projects' : '工程作品的分層工作檔案'}>
+          <div class="document-stack" aria-hidden="true">
+            <div class="document-sheet document-sheet-back"></div>
+            <div class="document-sheet document-sheet-mid"></div>
+            <div class="document-sheet document-sheet-front"><span>FILE / 001</span><strong>{lang === 'en' ? 'REAL WORK' : '實際作品'}<br />{lang === 'en' ? 'REAL SYSTEMS' : '真正系統'}</strong><small>TAKALA WANG<br />2026 / ENGINEERING</small></div>
+          </div>
+          <div class="workbench-readout"><strong>{lang === 'en' ? 'OPEN FILE' : '開啟檔案'}</strong>{lang === 'en' ? 'Products, research, open source' : '產品、研究、開源協作'}<br />{lang === 'en' ? 'Five selected records' : '五筆精選紀錄'}</div>
+        </div>
+
+        <p class="scroll-cue">{lang === 'en' ? 'Continue reading the field' : '繼續閱讀觀測紀錄'}</p>
       </section>
 
-      <section id="profile" class="border-t border-border py-20 sm:py-24">
-        <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.profile.eyebrow}</p><h2 class="mt-3 text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">{t.profile.title}</h2></div><p class="max-w-xs text-sm leading-6 text-muted-foreground">{t.profile.summary}</p></div>
-        <div class="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
-          <div><p class="text-5xl font-semibold tracking-[-0.08em] text-primary">{profile.chineseName}</p><p class="mt-2 text-muted-foreground">{profile.englishName}</p><p class="mt-8 max-w-md text-lg leading-8 text-foreground">{profile.title}</p></div>
-          <dl class="grid gap-5 sm:grid-cols-3 lg:grid-cols-1">
-            <div class="border-b border-border pb-4"><dt class="text-xs text-muted-foreground">{t.profile.current}</dt><dd class="mt-2 font-medium text-foreground">{education[0].title}<br />{education[0].school}</dd></div>
-            <div class="border-b border-border pb-4"><dt class="text-xs text-muted-foreground">{t.profile.bachelor}</dt><dd class="mt-2 font-medium text-foreground">{education[1].school}<br />{t.profile.topSix}</dd></div>
-            <div class="border-b border-border pb-4"><dt class="text-xs text-muted-foreground">{t.profile.focus}</dt><dd class="mt-2 font-medium text-foreground">AI systems · Product engineering · Open source</dd></div>
+      <section class="section-block" id="profile" aria-labelledby="profile-title">
+        <div class="section-heading">
+          <div><h2 id="profile-title">{t.profile.title}</h2></div>
+          <p>{t.profile.summary}</p>
+        </div>
+        <div class="identity-grid">
+          <div>
+            <p class="identity-name">{profile.chineseName}<small>{profile.englishName}</small></p>
+            <p class="identity-role">{profile.title}</p>
+          </div>
+          <dl class="fact-list">
+            <div class="fact-row"><dt>{t.profile.current}</dt><dd>{education[0].title}<br />{education[0].school}</dd></div>
+            <div class="fact-row"><dt>{t.profile.bachelor}</dt><dd>{education[1].school}<br />{t.profile.topSix}</dd></div>
+            <div class="fact-row"><dt>{t.profile.focus}</dt><dd>AI systems · Product engineering · Open source</dd></div>
           </dl>
         </div>
       </section>
 
-      <section id="work" class="border-t border-border py-20 sm:py-24">
-        <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.work.eyebrow}</p><h2 class="mt-3 text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">{t.work.title}</h2></div><p class="max-w-xs text-sm leading-6 text-muted-foreground">{t.work.summary}</p></div>
-        <div class="grid gap-6 lg:grid-cols-2">{featuredProjects.map((project, index) => <ProjectCard project={project} lang={lang} index={index + 1} />)}</div>
-        <div class="mt-10 flex flex-col items-start justify-between gap-5 rounded-2xl border border-border bg-muted/40 p-6 sm:flex-row sm:items-center"><div><p class="font-medium text-foreground">{t.work.moreHint}</p><p class="mt-1 text-sm text-muted-foreground">{projects.length} projects · research · open source</p></div><SmoothButton client:visible asChild size="lg" variant="outline"><a href={workPath}>{t.work.more} <span aria-hidden="true">↗</span></a></SmoothButton></div>
+      <section class="section-block" id="work" aria-labelledby="work-title">
+        <div class="section-heading">
+          <div><h2 id="work-title">{t.work.title}</h2></div>
+          <p>{t.work.summary}</p>
+        </div>
+        <div class="project-track">
+          {featuredProjects.map((project, index) => <ProjectCard project={project} lang={lang} index={index + 1} />)}
+        </div>
+        <a class="work-archive-link" href={workPath}><span>{archiveLabel}</span><span aria-hidden="true">↗</span><small>{archiveCount}</small></a>
       </section>
 
-      <section id="experience" class="border-t border-border py-20 sm:py-24">
-        <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.experience.eyebrow}</p><h2 class="mt-3 text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">{t.experience.title}</h2></div><p class="max-w-xs text-sm leading-6 text-muted-foreground">{t.experience.summary}</p></div>
-        <div class="grid gap-x-12 lg:grid-cols-2">
-          {[experience.slice(0, midpoint), experience.slice(midpoint)].map((column) => <div class="border-t border-border">{column.map((item) => { const localized = experienceText(item, lang); return <article class="border-b border-border py-5"><time class="text-xs text-primary">{item.date}</time><h3 class="mt-1 text-lg font-semibold text-foreground">{item.link ? <a class="transition hover:text-primary" href={item.link} target="_blank" rel="noreferrer">{localized.title} ↗</a> : localized.title}</h3><p class="mt-2 text-sm leading-6 text-muted-foreground">{localized.description}</p></article>; })}</div>)}
+      <section class="section-block" id="experience" aria-labelledby="experience-title">
+        <div class="section-heading">
+          <div><h2 id="experience-title">{t.experience.title}</h2></div>
+          <p>{t.experience.summary}</p>
+        </div>
+        <div class="experience-log">
+          {experience.map((item) => { const localized = experienceText(item, lang); return <article class="experience-entry"><time class="experience-date">{item.date}</time><div><h3>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{localized.title} ↗</a> : localized.title}</h3><p>{localized.description}</p></div></article>; })}
         </div>
       </section>
 
-      <section class="border-t border-border py-20 sm:py-24">
-        <div class="grid gap-12 lg:grid-cols-2">
-          <div><p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">TOOLBOX</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-foreground">Stack I use to ship.</h2>{stack.map(([label, values]) => <div class="mt-6 border-b border-border pb-4"><p class="text-xs text-muted-foreground">{label}</p><p class="mt-2 text-sm leading-6 text-foreground">{values}</p></div>)}</div>
-          <div><p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">RECOGNITION</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-foreground">Selected signals.</h2>{recognition.map(([label, value]) => <div class="flex justify-between gap-5 border-b border-border py-5 text-sm"><strong class="font-medium text-foreground">{label}</strong><span class="text-right text-muted-foreground">{value}</span></div>)}</div>
+      <section class="section-block" aria-labelledby="evidence-title">
+        <div class="section-heading">
+          <div><h2 id="evidence-title">{lang === 'en' ? 'Evidence' : '能力證據'}</h2></div>
+          <p>{lang === 'en' ? 'The tools, systems, and signals behind the work.' : '作品背後使用的工具、系統與成果訊號。'}</p>
+        </div>
+        <div class="evidence-grid">
+          <div class="evidence-block"><h3>{lang === 'en' ? 'Toolbox' : '技術棧'}</h3>{stack.map(([label, values]) => <div class="stack-line"><strong>{label}</strong><span>{values}</span></div>)}</div>
+          <div class="evidence-block"><h3>{lang === 'en' ? 'Recognition' : '獎項與成果'}</h3>{recognition.map(([label, value]) => <div class="recognition-line"><strong>{label}</strong><span>{value}</span></div>)}</div>
         </div>
       </section>
 
-      <section id="contact" class="border-t border-border py-20 sm:py-24"><div class="flex flex-col justify-between gap-8 rounded-2xl border border-border bg-muted/40 p-7 sm:flex-row sm:items-end sm:p-10"><div><p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">CONTACT</p><h2 class="mt-4 max-w-xl text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">Let’s build something useful.</h2></div><div class="flex flex-col items-start gap-3 text-sm"><a class="font-medium text-foreground underline decoration-border underline-offset-4 hover:text-primary" href={`mailto:${profile.email}`}>{profile.email} ↗</a><a class="font-medium text-foreground underline decoration-border underline-offset-4 hover:text-primary" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div></section>
+      <section class="section-block" id="contact" aria-labelledby="contact-title">
+        <div class="contact-block">
+          <div><h2 id="contact-title">{lang === 'en' ? 'Open a channel.' : '開啟聯絡。'}</h2></div>
+          <div class="contact-channels"><span class="contact-channel-label">{lang === 'en' ? 'Direct contact' : '直接聯絡'}</span><a class="contact-channel" href={`mailto:${profile.email}`}>{profile.email}</a><a class="contact-channel" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+        </div>
+      </section>
     </main>
 
-    <footer class="flex flex-col justify-between gap-4 border-t border-border py-8 text-xs text-muted-foreground sm:flex-row"><span>© 2026 {profile.displayName} · {t.footer.note}</span><span><a class="hover:text-foreground" href={profile.website} target="_blank" rel="noreferrer">{t.footer.blog}</a> · <a class="hover:text-foreground" href="https://github.com/TakalaWang" target="_blank" rel="noreferrer">GitHub</a></span></footer>
+    <footer class="observatory-footer"><span class="footer-meta">© 2026 {profile.displayName} · {t.footer.note}</span><span class="footer-links"><a href={profile.website} target="_blank" rel="noreferrer">{t.footer.blog}</a><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a></span></footer>
   </div>
 </Layout>

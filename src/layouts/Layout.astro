@@ -4,7 +4,7 @@ import '../styles/global.css';
 const { title = 'Takala Wang — Resume', lang = 'zh-Hant' } = Astro.props;
 ---
 <!doctype html>
-<html lang={lang} class="dark">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -13,9 +13,17 @@ const { title = 'Takala Wang — Resume', lang = 'zh-Hant' } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-    <script is:inline>if (localStorage.getItem('resume-theme') !== 'light') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');</script>
+    <script is:inline>if (localStorage.getItem('resume-theme') === 'dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');</script>
   </head>
   <body>
+    <!--
+      THESIS: An engineering resume experienced as a working print room, not a presentation deck.
+      OWN-WORLD: Uncoated paper, dark ink, blue drafting marks, yellow registration tabs, editorial files, and artifact-led proof.
+      STORY: Meet Takala, open the project files, read the engineering log, then open a direct channel.
+      FIRST VIEWPORT: Name and role sit beside a layered work file; the first action opens the project index and the scroll cue starts the archive.
+      FORM: Digital print workbench / user-pinned replacement direction after rejecting the observatory world.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
     <slot />
     <script is:inline>
       document.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {

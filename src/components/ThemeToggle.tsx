@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import SmoothButton from './ui/smoothui/smooth-button';
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
     const isDark = document.documentElement.classList.contains('dark');
