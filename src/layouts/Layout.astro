@@ -1,10 +1,10 @@
 ---
 import '../styles/global.css';
 
-const { title = 'Takala Wang — Resume' } = Astro.props;
+const { title = 'Takala Wang — Resume', lang = 'zh-Hant' } = Astro.props;
 ---
 <!doctype html>
-<html lang="zh-Hant" data-theme="dark">
+<html lang={lang} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -13,10 +13,7 @@ const { title = 'Takala Wang — Resume' } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-    <script is:inline>
-      const savedTheme = localStorage.getItem('resume-theme');
-      if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.dataset.theme = savedTheme;
-    </script>
+    <script is:inline>if (localStorage.getItem('resume-theme') !== 'light') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');</script>
   </head>
   <body>
     <slot />

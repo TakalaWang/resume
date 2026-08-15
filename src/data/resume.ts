@@ -47,7 +47,7 @@ export const projects = [
     kind: 'AI product · Live',
     description: '英語口說評測平台。包含考試管理、錄音、Azure Speech 評分、Azure OpenAI 內容評估、背景佇列與管理端結果處理。',
     stack: 'SvelteKit · Azure · PostgreSQL · BullMQ',
-    href: 'https://speech-platform.takalawang.dev',
+    href: undefined,
     result: 'Live product',
     contribution: '實作考試管理、錄音處理、Azure Speech／OpenAI 評分、背景佇列與管理端失敗處理。',
     outcome: '把語音評測、結果產出與管理工作串成可運作的產品流程。',
@@ -67,7 +67,7 @@ export const projects = [
     kind: 'Collaboration · Product',
     description: '課程搜尋與課表規劃工具。參與課表預覽、衝堂提示、進階篩選、官方校名資料與雲端課表功能。',
     stack: 'Go · SvelteKit · PostgreSQL',
-    href: 'https://github.com/nycu-life/coz-planner',
+    href: undefined,
     result: 'Team project',
     contribution: '參與課表預覽、衝堂提示、進階篩選、官方校名資料與雲端課表功能。',
     outcome: '把課程搜尋延伸成可以實際安排學期課表的工具。',
@@ -77,7 +77,7 @@ export const projects = [
     kind: 'Collaboration · Product',
     description: '校園活動管理系統。參與活動海報、偏好設定、管理介面、audit history、郵件與 tracing observability。',
     stack: 'Go · TypeScript · PostgreSQL · Docker',
-    href: 'https://github.com/nycu-life/events',
+    href: undefined,
     result: 'Team project',
     contribution: '參與活動海報、偏好設定、管理介面、audit history、郵件與 tracing observability。',
     outcome: '協作建立可部署、可追蹤的校園活動管理系統。',
@@ -111,7 +111,7 @@ export const projects = [
     kind: 'Tool · Live',
     description: '分析 Git repository 的網站工具，將 repository 結構與開發資訊整理成可閱讀的介面。',
     stack: 'TypeScript · Web app',
-    href: 'https://git-analysis.takalawang.dev',
+    href: 'https://github.com/TakalaWang/repo-lens',
     result: 'Live demo',
   },
   {
@@ -119,7 +119,7 @@ export const projects = [
     kind: 'Open source · Tool',
     description: '產生 README 用的音樂等化器 SVG 與影片，將音訊視覺化成可嵌入的開源素材。',
     stack: 'TypeScript · SVG · Audio',
-    href: 'https://readme-wave.takalawang.dev',
+    href: 'https://github.com/TakalaWang/readme-waves',
     result: 'Live demo',
   },
 ];
@@ -131,7 +131,7 @@ export const experience = [
   { date: '2023 — 現在', title: 'Engineering Collaborator · NYCU LIFE', description: '參與校園產品、活動系統、身份管理與基礎設施的長期協作。', link: 'https://github.com/nycu-life' },
   { date: '2024.01 — 現在', title: 'Research Developer · LTTC / NTNU', description: '參與 GPET 口說評量與多模態 AI 研究，涵蓋 VLM 微調、prompt engineering、語音評分與研究系統整合。' },
   { date: '2024.06 — 現在', title: 'Research Developer · Delta Electronics', description: '以 GraphRAG、LightRAG 與 semantic indexing 建立企業知識問答系統，改善檢索與回答品質。' },
-  { date: '2023.09 — 現在', title: 'Full-Stack Developer · Cool English', description: '參與 SSML 語音生成、情境式聊天與 AI 口說評量等核心功能，服務超過十萬名使用者。', link: 'https://coolenglish.edu.tw' },
+  { date: '2023.09 — 現在', title: 'Full-Stack Developer · Cool English', description: '參與 SSML 語音生成、情境式聊天與 AI 口說評量等核心功能，服務超過十萬名使用者。', link: 'https://cool-english-conversational-assessment.pages.dev/' },
 ];
 
 export const education = [
