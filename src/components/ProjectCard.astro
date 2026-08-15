@@ -9,6 +9,7 @@ interface Props { project: Project; lang: Lang; index: number; }
 const { project, lang, index } = Astro.props;
 const text = projectText(project, lang);
 const media = projectMedia[project.title];
+const mediaUrl = media ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${media}` : undefined;
 const labels = lang === 'en'
   ? { contribution: 'Contribution', outcome: 'Outcome', open: 'Open signal' }
   : { contribution: '我的貢獻', outcome: '成果', open: '開啟專案' };
@@ -24,7 +25,7 @@ const labels = lang === 'en'
   <div class="project-main">
     {media ? (
       <div class="project-media-frame">
-        {project.href ? <a href={project.href} target="_blank" rel="noreferrer" aria-label={`${labels.open}: ${project.title}`}><img src={media} alt={`${project.title} project preview`} loading={index > 1 ? 'lazy' : 'eager'} /></a> : <img src={media} alt={`${project.title} project preview`} loading={index > 1 ? 'lazy' : 'eager'} />}
+        {project.href ? <a href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`${labels.open}: ${project.title}`}><img src={mediaUrl} alt={`${project.title} project preview`} loading={index > 1 ? 'lazy' : 'eager'} /></a> : <img src={mediaUrl} alt={`${project.title} project preview`} loading={index > 1 ? 'lazy' : 'eager'} />}
       </div>
     ) : (
       <div class="project-abstract" aria-label={`${project.title} case study visual`}>
@@ -40,7 +41,7 @@ const labels = lang === 'en'
         <div class="proof-row"><strong>{labels.contribution}</strong><span>{text.contribution}</span></div>
         <div class="proof-row"><strong>{labels.outcome}</strong><span>{text.outcome}</span></div>
       </div>
-      {project.href && <a class="project-link" href={project.href} target="_blank" rel="noreferrer">{labels.open} <span aria-hidden="true">↗</span></a>}
+      {project.href && <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer">{labels.open} <span aria-hidden="true">↗</span></a>}
     </div>
   </div>
 </article>

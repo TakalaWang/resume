@@ -1,13 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ThemeToggle from './ThemeToggle';
-import ProjectCard from './ProjectCard.astro';
-import { profile, projects } from '../data/resume';
+import ProjectBrowser from './ProjectBrowser';
+import { profile } from '../data/resume';
 import type { Lang } from '../data/siteCopy';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
-const homePath = lang === 'en' ? '/en/' : '/';
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const homePath = `${basePath}${lang === 'en' ? '/en/' : '/'}`;
 ---
 
 <Layout title={`${profile.displayName} — ${lang === 'en' ? 'All Work' : '所有作品'}`} lang={lang === 'en' ? 'en' : 'zh-Hant'}>
@@ -15,19 +16,18 @@ const homePath = lang === 'en' ? '/en/' : '/';
     <header class="observatory-header">
       <a class="brand-mark" href={homePath}>{profile.chineseName} / {profile.displayName.toUpperCase()}</a>
       <nav class="header-nav" aria-label="Archive navigation"><a href={homePath}>{lang === 'en' ? 'Back home' : '回到首頁'}</a></nav>
-      <div class="header-actions"><a class="language-switch" href={lang === 'en' ? '/' : '/en/'}>{lang === 'en' ? '中文' : 'EN'}</a><ThemeToggle client:load /></div>
+      <div class="header-actions"><a class="language-switch" href={`${basePath}${lang === 'en' ? '/' : '/en/'}`}>{lang === 'en' ? '中文' : 'EN'}</a><ThemeToggle client:load /></div>
     </header>
 
     <main>
       <section class="archive-heading" aria-labelledby="archive-title">
         <h1 id="archive-title">{lang === 'en' ? 'All work.' : '所有作品。'}</h1>
-        <p>{lang === 'en' ? 'A continuous record of products, research systems, collaborations, and open-source tools.' : '產品、研究系統、合作專案與開源工具的完整觀測紀錄。'}</p>
       </section>
       <section class="archive-list" aria-label={lang === 'en' ? 'All projects' : '所有專案'}>
-        {projects.map((project, index) => <ProjectCard project={project} lang={lang} index={index + 1} />)}
+        <ProjectBrowser client:load lang={lang} />
       </section>
     </main>
 
-    <footer class="observatory-footer"><span class="footer-meta">© 2026 {profile.displayName}</span><span class="footer-links"><a href={`mailto:${profile.email}`}>{profile.email}</a><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a></span></footer>
+    <footer class="observatory-footer"><span class="footer-meta">© 2026 {profile.displayName}</span><span class="footer-links"><a href={`mailto:${profile.email}`}>{profile.email}</a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a></span></footer>
   </div>
 </Layout>

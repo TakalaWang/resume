@@ -8,12 +8,12 @@ import { copy, experienceText, type Lang } from '../data/siteCopy';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = copy[lang];
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
 const featuredTitles = ['NOJV', 'OnStage TW', 'Speech Examination Platform', 'Hinagiku', 'Cool English'];
 const featuredProjects = featuredTitles.map((title) => projects.find((project) => project.title === title)).filter((project): project is typeof projects[number] => Boolean(project));
-const homePath = lang === 'en' ? '/en/' : '/';
-const workPath = lang === 'en' ? '/en/work/' : '/work/';
+const homePath = `${basePath}${lang === 'en' ? '/en/' : '/'}`;
+const workPath = `${basePath}${lang === 'en' ? '/en/work/' : '/work/'}`;
 const archiveLabel = lang === 'en' ? 'Open the complete work archive' : '開啟完整作品檔案';
-const archiveCount = lang === 'en' ? `${projects.length} records · products · research · open source` : `${projects.length} 筆紀錄 · 產品 · 研究 · 開源`;
 ---
 
 <Layout title={`${profile.displayName} — ${lang === 'en' ? 'Software Engineer' : '工程師履歷'}`} lang={lang === 'en' ? 'en' : 'zh-Hant'}>
@@ -26,7 +26,7 @@ const archiveCount = lang === 'en' ? `${projects.length} records · products · 
         <a href="#contact">{t.nav.contact}</a>
       </nav>
       <div class="header-actions">
-        <a class="language-switch" href={lang === 'en' ? '/' : '/en/'}>{t.nav.language}</a>
+        <a class="language-switch" href={`${basePath}${lang === 'en' ? '/' : '/en/'}`}>{t.nav.language}</a>
         <ThemeToggle client:load />
       </div>
     </header>
@@ -44,7 +44,7 @@ const archiveCount = lang === 'en' ? `${projects.length} records · products · 
           <div class="hero-actions">
             <a class="signal-link" href="#work">{t.hero.work} <span aria-hidden="true">↓</span></a>
             <a class="signal-link muted" href={`mailto:${profile.email}`}>{profile.email}</a>
-            <a class="signal-link muted" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a class="signal-link muted" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
@@ -62,8 +62,7 @@ const archiveCount = lang === 'en' ? `${projects.length} records · products · 
 
       <section class="section-block" id="profile" aria-labelledby="profile-title">
         <div class="section-heading">
-          <div><h2 id="profile-title">{t.profile.title}</h2></div>
-          <p>{t.profile.summary}</p>
+          <h2 id="profile-title">{t.profile.title}</h2>
         </div>
         <div class="identity-grid">
           <div>
@@ -80,29 +79,26 @@ const archiveCount = lang === 'en' ? `${projects.length} records · products · 
 
       <section class="section-block" id="work" aria-labelledby="work-title">
         <div class="section-heading">
-          <div><h2 id="work-title">{t.work.title}</h2></div>
-          <p>{t.work.summary}</p>
+          <h2 id="work-title">{t.work.title}</h2>
         </div>
         <div class="project-track">
           {featuredProjects.map((project, index) => <ProjectCard project={project} lang={lang} index={index + 1} />)}
         </div>
-        <a class="work-archive-link" href={workPath}><span>{archiveLabel}</span><span aria-hidden="true">↗</span><small>{archiveCount}</small></a>
+        <a class="work-archive-link" href={workPath}><span>{archiveLabel}</span><span aria-hidden="true">↗</span></a>
       </section>
 
       <section class="section-block" id="experience" aria-labelledby="experience-title">
         <div class="section-heading">
-          <div><h2 id="experience-title">{t.experience.title}</h2></div>
-          <p>{t.experience.summary}</p>
+          <h2 id="experience-title">{t.experience.title}</h2>
         </div>
         <div class="experience-log">
-          {experience.map((item) => { const localized = experienceText(item, lang); return <article class="experience-entry"><time class="experience-date">{item.date}</time><div><h3>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{localized.title} ↗</a> : localized.title}</h3><p>{localized.description}</p></div></article>; })}
+          {experience.map((item) => { const localized = experienceText(item, lang); return <article class="experience-entry"><time class="experience-date">{item.date}</time><div><h3>{item.link ? <a href={item.link} target="_blank" rel="noopener noreferrer">{localized.title} ↗</a> : localized.title}</h3><p>{localized.description}</p></div></article>; })}
         </div>
       </section>
 
       <section class="section-block" aria-labelledby="evidence-title">
         <div class="section-heading">
-          <div><h2 id="evidence-title">{lang === 'en' ? 'Evidence' : '能力證據'}</h2></div>
-          <p>{lang === 'en' ? 'The tools, systems, and signals behind the work.' : '作品背後使用的工具、系統與成果訊號。'}</p>
+          <h2 id="evidence-title">{lang === 'en' ? 'Evidence' : '能力證據'}</h2>
         </div>
         <div class="evidence-grid">
           <div class="evidence-block"><h3>{lang === 'en' ? 'Toolbox' : '技術棧'}</h3>{stack.map(([label, values]) => <div class="stack-line"><strong>{label}</strong><span>{values}</span></div>)}</div>
@@ -113,11 +109,11 @@ const archiveCount = lang === 'en' ? `${projects.length} records · products · 
       <section class="section-block" id="contact" aria-labelledby="contact-title">
         <div class="contact-block">
           <div><h2 id="contact-title">{lang === 'en' ? 'Open a channel.' : '開啟聯絡。'}</h2></div>
-          <div class="contact-channels"><span class="contact-channel-label">{lang === 'en' ? 'Direct contact' : '直接聯絡'}</span><a class="contact-channel" href={`mailto:${profile.email}`}>{profile.email}</a><a class="contact-channel" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+          <div class="contact-channels"><a class="contact-channel" href={`mailto:${profile.email}`}>{profile.email}</a><a class="contact-channel" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
         </div>
       </section>
     </main>
 
-    <footer class="observatory-footer"><span class="footer-meta">© 2026 {profile.displayName} · {t.footer.note}</span><span class="footer-links"><a href={profile.website} target="_blank" rel="noreferrer">{t.footer.blog}</a><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a></span></footer>
+    <footer class="observatory-footer"><span class="footer-meta">© 2026 {profile.displayName} · {t.footer.note}</span><span class="footer-links"><a href={profile.website} target="_blank" rel="noopener noreferrer">{t.footer.blog}</a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a></span></footer>
   </div>
 </Layout>
