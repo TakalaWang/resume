@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectShowcase from './ProjectShowcase';
+import SmoothWorkList from './SmoothWorkList';
 import ThemeToggle from './ThemeToggle';
+import SmoothButton from './ui/smoothui/smooth-button';
 import { education, experience, profile, recognition, stack } from '../data/resume';
 import { copy, experienceText, type Lang } from '../data/siteCopy';
 
@@ -15,53 +16,53 @@ const currentRole = experience[0];
 ---
 
 <Layout title={`${profile.displayName} — ${lang === 'en' ? 'Software Engineer' : '工程師履歷'}`} lang={lang === 'en' ? 'en' : 'zh-Hant'}>
-  <div class="resume-shell">
-    <header class="site-header">
-      <a class="site-brand" href={homePath}><span class="brand-dot" aria-hidden="true"></span>{profile.chineseName}<span class="brand-slash">/</span>{profile.displayName}</a>
-      <nav class="site-nav" aria-label="Primary navigation"><a href="#work">{t.nav.work}</a><a href="#experience">{t.nav.experience}</a><a href="#contact">{t.nav.contact}</a></nav>
-      <div class="site-actions"><a href={`${basePath}${lang === 'en' ? '/' : '/en/'}`}>{t.nav.language}</a><ThemeToggle client:load /></div>
+  <div class="smooth-site">
+    <header class="smooth-header">
+      <a class="smooth-brand" href={homePath} aria-label={`${profile.chineseName} / ${profile.displayName}`}><span class="smooth-brand-mark">TW</span><span>{profile.chineseName}<small>{profile.displayName}</small></span></a>
+      <nav class="smooth-nav" aria-label="Primary navigation"><a href="#work">{t.nav.work}</a><a href="#experience">{t.nav.experience}</a><a href="#contact">{t.nav.contact}</a></nav>
+      <div class="smooth-header-actions"><a href={`${basePath}${lang === 'en' ? '/' : '/en/'}`}>{t.nav.language}</a><ThemeToggle client:load /></div>
     </header>
 
     <main>
-      <section class="intro-section" aria-labelledby="intro-title">
-        <div class="intro-copy">
-          <p class="section-label">{profile.title}</p>
-          <h1 id="intro-title">{profile.chineseName}<span>{profile.englishName}</span></h1>
-          <p class="intro-role">{lang === 'en' ? 'I build product systems, AI tools, and open-source software.' : '我把產品系統、AI 工具與開源軟體做成真正能運作的東西。'}</p>
-          <div class="intro-links"><a class="primary-link" href="#work">{t.hero.work}<span aria-hidden="true">↘</span></a><a href={`mailto:${profile.email}`}>{profile.email}</a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div>
+      <section class="smooth-hero" aria-labelledby="hero-title">
+        <div class="smooth-hero-copy">
+          <h1 id="hero-title">{profile.chineseName}<span>{profile.englishName}</span></h1>
+          <p class="smooth-role">{profile.title}</p>
+          <p class="smooth-hero-summary">{lang === 'en' ? 'I build software products, AI systems, and open-source tools that people can use.' : '我做軟體產品、AI 系統與真正有人使用的開源工具。'}</p>
+          <div class="smooth-hero-actions"><a href="#work" class="smooth-text-link">{t.hero.work}<svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a><a href={`mailto:${profile.email}`} class="smooth-text-link">{profile.email}</a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="smooth-text-link">LinkedIn <svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a></div>
         </div>
-        <div class="status-panel" aria-label={lang === 'en' ? 'Current status' : '目前狀態'}>
-          <div class="status-panel-header"><span>{lang === 'en' ? 'CURRENT STATUS' : '目前狀態'}</span><span class="status-live"><i /> {lang === 'en' ? 'Available' : '可聯絡'}</span></div>
-          <div class="status-role"><span>{lang === 'en' ? 'Working as' : '目前職務'}</span><strong>{currentRole.title.split(' · ')[0]}</strong><a href={currentRole.link} target="_blank" rel="noopener noreferrer">{currentRole.title.split(' · ')[1]} <span aria-hidden="true">↗</span></a></div>
-          <div class="status-route" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-          <dl class="status-facts"><div><dt>{lang === 'en' ? 'Based in' : '所在地'}</dt><dd>{profile.location}</dd></div><div><dt>{lang === 'en' ? 'Focus' : '方向'}</dt><dd>AI · Product · OSS</dd></div></dl>
-        </div>
+        <aside class="smooth-profile-panel" aria-label={lang === 'en' ? 'Current profile' : '目前個人資料'}>
+          <div class="smooth-panel-head"><span>{lang === 'en' ? 'CURRENTLY' : '目前狀態'}</span><span class="smooth-available"><i /> {lang === 'en' ? 'Available' : '可聯絡'}</span></div>
+          <div class="smooth-panel-role"><span>{lang === 'en' ? 'Working as' : '目前職務'}</span><strong>{currentRole.title.split(' · ')[0]}</strong><a href={currentRole.link} target="_blank" rel="noopener noreferrer">{currentRole.title.split(' · ')[1]} <svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a></div>
+          <dl class="smooth-panel-facts"><div><dt>{lang === 'en' ? 'Location' : '所在地'}</dt><dd>{profile.location}</dd></div><div><dt>{lang === 'en' ? 'Focus' : '方向'}</dt><dd>AI · Product · OSS</dd></div></dl>
+          <a class="smooth-panel-email" href={`mailto:${profile.email}`}>{profile.email}<svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a>
+        </aside>
       </section>
 
-      <section class="facts-strip scroll-reveal" aria-label={lang === 'en' ? 'Profile facts' : '個人資料摘要'}>
-        <div><span>{t.profile.current}</span><strong>{education[0].title}</strong><small>{education[0].school}</small></div>
-        <div><span>{t.profile.bachelor}</span><strong>{education[1].title}</strong><small>{education[1].school}</small></div>
+      <section class="smooth-proof-strip" aria-label={lang === 'en' ? 'Education and recognition' : '學歷與成果'}>
+        <div><span>{lang === 'en' ? 'Education' : '學歷'}</span><strong>{education[0].title}</strong><small>{education[0].school}</small></div>
+        <div><span>{lang === 'en' ? 'Before' : '學士'}</span><strong>{education[1].title}</strong><small>{education[1].school}</small></div>
         <div><span>{lang === 'en' ? 'Recognition' : '成果'}</span><strong>SLaTE · ICPC · 客語競賽</strong><small>{lang === 'en' ? 'Research and competition work' : '研究與競賽成果'}</small></div>
       </section>
 
-      <section class="content-section work-section scroll-reveal" id="work" aria-labelledby="work-title">
-        <div class="section-heading"><div><span class="section-label">01 / {lang === 'en' ? 'Selected work' : '精選作品'}</span><h2 id="work-title">{t.work.title}</h2></div><a class="section-action" href={workPath}>{lang === 'en' ? 'View all work' : '查看全部作品'} <span aria-hidden="true">↗</span></a></div>
-        <ProjectShowcase client:load lang={lang} featured />
+      <section class="smooth-section smooth-work-section" id="work" aria-labelledby="work-title">
+        <div class="smooth-section-heading"><div><h2 id="work-title">{lang === 'en' ? 'Work I helped ship.' : '我參與完成的作品。'}</h2></div><a class="smooth-inline-action" href={workPath}>{t.work.more}<svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a></div>
+        <SmoothWorkList client:load lang={lang} featured />
       </section>
 
-      <section class="content-section experience-section scroll-reveal" id="experience" aria-labelledby="experience-title">
-        <div class="section-heading"><div><span class="section-label">02 / {lang === 'en' ? 'Timeline' : '工作與研究'}</span><h2 id="experience-title">{t.experience.title}</h2></div></div>
-        <div class="experience-list">{experience.map((item, index) => { const localized = experienceText(item, lang); return <article class="experience-row"><time>{item.date}</time><div><h3>{item.link ? <a href={item.link} target="_blank" rel="noopener noreferrer">{localized.title}<span aria-hidden="true">↗</span></a> : localized.title}</h3><p>{localized.description}</p></div><span class="experience-number">{String(index + 1).padStart(2, '0')}</span></article>; })}</div>
+      <section class="smooth-section smooth-experience-section" id="experience" aria-labelledby="experience-title">
+        <div class="smooth-section-heading"><div><h2 id="experience-title">{lang === 'en' ? 'A practical timeline.' : '工程與研究經歷。'}</h2></div></div>
+        <div class="smooth-timeline">{experience.map((item, index) => { const localized = experienceText(item, lang); return <article class="smooth-timeline-row"><time>{item.date}</time><div><h3>{item.link ? <a href={item.link} target="_blank" rel="noopener noreferrer">{localized.title}<svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a> : localized.title}</h3><p>{localized.description}</p></div><span>{String(index + 1).padStart(2, '0')}</span></article>; })}</div>
       </section>
 
-      <section class="content-section proof-section scroll-reveal" aria-labelledby="proof-title">
-        <div class="section-heading"><div><span class="section-label">03 / {lang === 'en' ? 'Proof' : '能力證據'}</span><h2 id="proof-title">{lang === 'en' ? 'What I work with' : '我使用的工具'}</h2></div></div>
-        <div class="proof-layout"><div class="stack-table">{stack.map(([label, values]) => <div><span>{label}</span><strong>{values}</strong></div>)}</div><div class="recognition-list"><h3>{lang === 'en' ? 'Recognition' : '獎項與成果'}</h3>{recognition.map(([label, value]) => <div><strong>{label}</strong><span>{value}</span></div>)}</div></div>
+      <section class="smooth-section smooth-proof-section" aria-labelledby="proof-title">
+        <div class="smooth-section-heading"><div><h2 id="proof-title">{lang === 'en' ? 'Tools I work with.' : '我用來完成工作的工具。'}</h2></div></div>
+        <div class="smooth-capability-layout"><div class="smooth-stack-list">{stack.map(([label, values]) => <div><span>{label}</span><strong>{values}</strong></div>)}</div><div class="smooth-awards"><h3>{lang === 'en' ? 'Awards & papers' : '獎項與論文'}</h3>{recognition.map(([label, value]) => <div><strong>{label}</strong><span>{value}</span></div>)}</div></div>
       </section>
 
-      <section class="contact-section scroll-reveal" id="contact" aria-labelledby="contact-title"><div><span class="section-label">04 / {lang === 'en' ? 'Contact' : '聯絡'}</span><h2 id="contact-title">{lang === 'en' ? 'Let’s build something useful.' : '一起做點真正有用的東西。'}</h2></div><div class="contact-links"><a class="primary-link" href={`mailto:${profile.email}`}>{profile.email}<span aria-hidden="true">↗</span></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></section>
+      <section class="smooth-contact" id="contact" aria-labelledby="contact-title"><div><h2 id="contact-title">{lang === 'en' ? 'Let’s work together.' : '一起做點有用的東西。'}</h2><p>{lang === 'en' ? 'Email is the fastest way to reach me.' : 'Email 是最快找到我的方式。'}</p></div><div class="smooth-contact-links"><SmoothButton asChild variant="solid" color="blue" size="lg"><a href={`mailto:${profile.email}`}>{profile.email}<svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a></SmoothButton><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a></div></section>
     </main>
 
-    <footer class="site-footer"><span>© 2026 {profile.displayName}</span><a href={profile.website} target="_blank" rel="noopener noreferrer">{t.footer.blog} <span aria-hidden="true">↗</span></a></footer>
+    <footer class="smooth-footer"><span>© 2026 {profile.displayName}</span><a href={profile.website} target="_blank" rel="noopener noreferrer">{t.footer.blog} <svg class="smooth-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" /></svg></a></footer>
   </div>
 </Layout>

@@ -10,18 +10,15 @@ const { title = 'Takala Wang — Resume', lang = 'zh-Hant' } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={lang === 'en' ? 'Takala Wang — Software Engineer and AI Researcher.' : '王重鈞的工程師履歷與作品集。'} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
     <script is:inline>if (localStorage.getItem('resume-theme') === 'dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');</script>
   </head>
   <body>
     <!--
-      THESIS: A resume that behaves like a living product surface: identity stays visible while real work changes in the preview stage. It refuses the hero-and-card presentation deck.
-      OWN-WORLD: Deep ink, electric blue, warm yellow, and signal coral on a quiet responsive canvas; thin rails, compact rows, live preview frames, and SmoothUI controls.
-      STORY: Meet Takala, understand his current role, switch through shipped systems, scan the timeline, then open a direct channel.
-      FIRST VIEWPORT: Name, role, and contact paths occupy the left; a current-status signal panel occupies the right; the first project action is visible below without a giant decorative title.
-      FORM: Personal systems console / direction seed aea805a3, assigned grounded candidate 7, code-led because the product truth is content and interaction rather than a static art comp.
+      THESIS: A resume that reads like a finished product surface: the person leads, the work is selectable, and the evidence stays in one clear path. It refuses the portfolio card wall and the decorative hero.
+      OWN-WORLD: SmoothUI-native rounded surfaces, quiet blue signals, crisp ink, compact rows, and one active work stage; no stars, glass cards, gradients, or slide-deck framing.
+      STORY: Meet Takala, understand his current role, inspect five shipped systems through one live work surface, scan the timeline and technical profile, then contact him.
+      FIRST VIEWPORT: Name, role, contact paths, and a current-profile surface share the opening field; the work section begins immediately after the education proof strip.
+      FORM: SmoothUI product surface with an arcade-screen discipline for active states / direction seed 29aa9b12, assigned grounded candidate 3, code-led because real resume data and native controls are the product truth.
       FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
     -->
     <slot />

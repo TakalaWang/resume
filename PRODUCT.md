@@ -32,7 +32,7 @@ Visitors scan the site quickly on desktop or mobile, then follow project links, 
 - Chinese and English versions are required.
 - Selected work presents five projects first, with NOJV first; the full index contains all projects.
 - Use verified live URLs only; projects without a public URL remain descriptive case studies.
-- Website-backed projects may show locally stored screenshots; claims must stay grounded in the supplied resume data.
+- Website-backed projects may show locally stored screenshots; claims must stay grounded in the supplied resume data. Missing or unverified demos remain text-only.
 - The page must remain legible as a resume while allowing immersive motion and visual pacing.
 
 ## Brand Commitments
@@ -41,13 +41,13 @@ Visitors scan the site quickly on desktop or mobile, then follow project links, 
 - Primary role: Software Engineer · AI Researcher.
 - Direct contact: ccwangtakala@gmail.com and LinkedIn.
 - The visual redesign must avoid a presentation/PPT feeling and should feel immersive rather than like a grid of slides.
-- The current visual direction is a personal systems console: live project previews, timeline rows, and direct evidence; do not use star fields, space metaphors, or presentation-deck framing.
+- The current visual direction is a SmoothUI-native product surface: identity leads, one project stage reveals evidence, and compact rows carry the resume; do not use star fields, space metaphors, glass cards, or presentation-deck framing.
 
 ## Evidence on Hand
 
 - Resume data in `src/data/resume.ts`.
 - Chinese and English copy in `src/data/siteCopy.ts`.
-- Project screenshots in `public/projects/` for NOJV, OnStage TW, and Cool English.
+- Project screenshots in `public/projects/` for NOJV, OnStage TW, Hinagiku, and Cool English.
 - Public links and repositories recorded in the project data.
 
 ## Product Principles

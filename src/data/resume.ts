@@ -47,7 +47,7 @@ export const projects = [
     kind: 'AI product · Live',
     description: '英語口說評測平台。包含考試管理、錄音、Azure Speech 評分、Azure OpenAI 內容評估、背景佇列與管理端結果處理。',
     stack: 'SvelteKit · Azure · PostgreSQL · BullMQ',
-    href: 'https://speak-up-26i.pages.dev/',
+    href: 'https://speech-platform.takalawang.dev',
     result: 'Live product',
     contribution: '實作考試管理、錄音處理、Azure Speech／OpenAI 評分、背景佇列與管理端失敗處理。',
     outcome: '把語音評測、結果產出與管理工作串成可運作的產品流程。',

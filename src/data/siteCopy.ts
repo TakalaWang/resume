@@ -5,18 +5,18 @@ export type Lang = 'zh' | 'en';
 export const copy = {
   zh: {
     nav: { work: '作品', experience: '經歷', contact: '聯絡', language: 'EN' },
-    hero: { role: 'Software Engineer · AI Researcher', thesis: 'Building useful systems.', work: '查看精選作品' },
-    profile: { eyebrow: 'PROFILE', title: '個人資料', summary: '學歷、工作方向與可直接聯絡的方式。', current: '目前學歷', bachelor: '學士背景', focus: '主要方向', online: '直接聯絡', topSix: 'Computer Science · Top 6%' },
-    work: { eyebrow: 'SELECTED WORK', title: '精選作品', summary: '五個最能代表我在產品、開源與 AI 系統上的實作。', contribution: '我的貢獻', outcome: '成果', open: '開啟專案', more: '查看更多作品', moreHint: '查看完整作品、研究與開源工具' },
-    experience: { eyebrow: 'EXPERIENCE', title: '經歷', summary: '工程工作、研究與長期協作。' },
+    hero: { role: 'Software Engineer · AI Researcher', thesis: 'Building useful systems.', work: '看作品' },
+    profile: { eyebrow: 'PROFILE', title: '個人資料', summary: '', current: '目前學歷', bachelor: '學士背景', focus: '主要方向', online: '直接聯絡', topSix: 'Computer Science · Top 6%' },
+    work: { eyebrow: 'SELECTED WORK', title: '作品', summary: '', contribution: '我的貢獻', outcome: '成果', open: '開啟專案', more: '全部作品', moreHint: '' },
+    experience: { eyebrow: 'EXPERIENCE', title: '經歷', summary: '' },
     footer: { note: 'Software Engineer · AI Researcher', blog: 'Blog' },
   },
   en: {
     nav: { work: 'Work', experience: 'Experience', contact: 'Contact', language: '中文' },
-    hero: { role: 'Software Engineer · AI Researcher', thesis: 'Building useful systems.', work: 'View selected work' },
-    profile: { eyebrow: 'PROFILE', title: 'Profile', summary: 'Education, engineering focus, and direct ways to get in touch.', current: 'Current education', bachelor: 'Undergraduate', focus: 'Focus', online: 'Get in touch', topSix: 'Computer Science · Top 6%' },
-    work: { eyebrow: 'SELECTED WORK', title: 'Selected work', summary: 'Five projects that represent my work across products, open source, and AI systems.', contribution: 'My contribution', outcome: 'Outcome', open: 'Open project', more: 'View all work', moreHint: 'Explore every project, research system, and open-source tool' },
-    experience: { eyebrow: 'EXPERIENCE', title: 'Experience', summary: 'Engineering roles, research, and long-term collaboration.' },
+    hero: { role: 'Software Engineer · AI Researcher', thesis: 'Building useful systems.', work: 'View work' },
+    profile: { eyebrow: 'PROFILE', title: 'Profile', summary: '', current: 'Current education', bachelor: 'Undergraduate', focus: 'Focus', online: 'Get in touch', topSix: 'Computer Science · Top 6%' },
+    work: { eyebrow: 'SELECTED WORK', title: 'Work', summary: '', contribution: 'Contribution', outcome: 'Outcome', open: 'Open project', more: 'All work', moreHint: '' },
+    experience: { eyebrow: 'EXPERIENCE', title: 'Experience', summary: '' },
     footer: { note: 'Software Engineer · AI Researcher', blog: 'Blog' },
   },
 } as const;
