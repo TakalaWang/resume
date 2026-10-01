@@ -1,0 +1,64 @@
+---
+import Base from './Base.astro';
+import { LinkButton } from '../components/site/Buttons';
+import { loadContent, type Locale } from '../lib/content';
+import { base, bodyBlocks, meta, techOf, withBase } from '../lib/view';
+import { experienceMedia } from '../data/experienceMedia';
+const { locale, slug } = Astro.props as { locale: Locale; slug: string };
+const data = await loadContent(locale);
+const zh = locale === 'zh';
+const group = data.groups.find(g => g.entries.some(e => e.id === slug))!;
+const entry = group.entries.find(e => e.id === slug)!;
+const links = entry.links.filter(l => !entry.images.some(i => i.src === l.href));
+const provenance = { production: zh ? '實際產品畫面' : 'Actual product capture', fixture: zh ? '範例資料展示' : 'Sample data', local: zh ? '本機執行畫面' : 'Local application capture' };
+const anchor = { work: 'experience', projects: 'projects', side: 'side', research: 'research', community: 'community' }[group.id] ?? '';
+type Figure = { src: string; alt: string; caption: string; photo?: boolean; source?: { href: string; label: string } };
+const figures: Figure[] = [
+  ...entry.images.map(i => ({ src: i.src, alt: i.alt, caption: `${i.alt} · ${provenance[i.provenance]}` })),
+  ...(experienceMedia[entry.id] ?? []).map(p => ({ src: withBase(p.src), alt: p.alt[locale], caption: p.alt[locale], photo: true, source: p.source ? { href: p.source, label: zh ? '照片來源' : 'Photo source' } : undefined })),
+];
+const tech = techOf(entry);
+---
+<Base locale={locale} path={`/case/${entry.id}/`} title={`${entry.title} · ${data.name}`} description={entry.summary || data.summary}>
+  <header class="mx-auto max-w-5xl px-6 pt-36 pb-16">
+    <p><a class="font-semibold text-sm no-underline hover:underline" href={`${base(locale)}/${anchor ? `#${anchor}` : ''}`}>← {group.title}</a></p>
+    {entry.subtitle && <p class="reveal mt-10 font-semibold text-accent text-sm uppercase tracking-[0.18em]">{meta(entry)}</p>}
+    <h1 class="reveal mt-3 font-extrabold text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.05] tracking-[-0.03em]">
+      {entry.title}
+    </h1>
+    {entry.summary && <p style="--i:1" class="reveal mt-6 max-w-3xl text-[clamp(1.1rem,2vw,1.4rem)] text-muted-foreground leading-relaxed">{entry.summary}</p>}
+    {links.length > 0 && (
+      <div class="reveal mt-8 flex flex-wrap gap-3" style="--i:2">
+        {links.map((l, i) => <LinkButton client:visible href={l.href} label={`${l.label} ↗`} variant={i === 0 ? 'solid' : 'outline'} />)}
+      </div>
+    )}
+  </header>
+
+  {figures[0] && (
+    <div class="mx-auto max-w-6xl px-6">
+      <a href={figures[0].src}><img alt={figures[0].alt} src={figures[0].src} class={`reveal w-full rounded-2xl border shadow-2xl ${figures[0].photo ? '' : 'aspect-[16/9] object-cover object-top'}`} style="--i:3" /></a>
+      <p class="mt-4 text-muted-foreground text-sm">{figures[0].caption}{figures[0].source && <> · <a href={figures[0].source.href}>{figures[0].source.label}</a></>}</p>
+    </div>
+  )}
+
+  <div class="mx-auto grid max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[1fr_16rem]">
+    <article class="case-body prose min-w-0 text-[1.05rem]">{bodyBlocks(entry).map(b => <Fragment set:html={b.html} />)}</article>
+    {tech.length > 0 && (
+      <aside class="lg:sticky lg:top-28 lg:self-start">
+        <p class="font-semibold text-muted-foreground text-xs uppercase tracking-[0.18em]">{zh ? '技術' : 'Technologies'}</p>
+        <ul class="mt-4 flex flex-wrap gap-2">{tech.map(t => <li class="rounded-full border bg-card px-3 py-1 text-sm">{t}</li>)}</ul>
+      </aside>
+    )}
+  </div>
+
+  {figures.length > 1 && (
+    <section class="mx-auto grid max-w-6xl gap-16 px-6 pb-32" aria-label={zh ? '畫面與照片' : 'Screens and photos'}>
+      {figures.slice(1).map((f, i) => (
+        <figure>
+          <a href={f.src}><img alt={f.alt} src={f.src} loading="lazy" class={`reveal w-full rounded-2xl border shadow-xl ${f.photo ? '' : 'aspect-[16/9] object-cover object-top'}`} /></a>
+          <figcaption class="reveal mt-4 text-muted-foreground text-sm">{f.caption}{f.source && <> · <a href={f.source.href}>{f.source.label}</a></>}</figcaption>
+        </figure>
+      ))}
+    </section>
+  )}
+</Base>

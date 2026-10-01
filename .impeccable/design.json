@@ -1,33 +1,624 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-15T11:02:00+08:00",
-  "title": "Design System: Takala Wang Resume Workbench",
+  "generatedAt": "2026-09-21T05:07:16.005Z",
+  "title": "Design System: Chung-Chun Wang Floating Islands",
   "extensions": {
     "colorMeta": {
-      "background": {"role": "neutral", "displayName": "Paper Ground", "canonical": "#e7e2d8", "tonalRamp": ["#d8d1c4", "#e7e2d8", "#f3efe7"]},
-      "foreground": {"role": "neutral", "displayName": "Dark Ink", "canonical": "#172733", "tonalRamp": ["#59656a", "#172733", "#07131b"]},
-      "blue": {"role": "primary", "displayName": "Drafting Blue", "canonical": "#145a78", "tonalRamp": ["#0a3445", "#145a78", "#9bd4e2"]},
-      "yellow": {"role": "secondary", "displayName": "Registration Yellow", "canonical": "#e6b84f", "tonalRamp": ["#8a6b22", "#e6b84f", "#f8e3a0"]}
+      "sky": {
+        "role": "neutral",
+        "displayName": "Fog Blue",
+        "tonalRamp": [
+          "oklch(15% 0.02622 235.38)",
+          "oklch(26% 0.02622 235.38)",
+          "oklch(38% 0.02622 235.38)",
+          "oklch(49% 0.02622 235.38)",
+          "oklch(61% 0.02622 235.38)",
+          "oklch(72% 0.02622 235.38)",
+          "oklch(84% 0.02622 235.38)",
+          "oklch(95% 0.02622 235.38)"
+        ]
+      },
+      "sky-low": {
+        "role": "neutral",
+        "displayName": "Low Warm Haze",
+        "tonalRamp": [
+          "oklch(15% 0.01858 86.15)",
+          "oklch(26% 0.01858 86.15)",
+          "oklch(38% 0.01858 86.15)",
+          "oklch(49% 0.01858 86.15)",
+          "oklch(61% 0.01858 86.15)",
+          "oklch(72% 0.01858 86.15)",
+          "oklch(84% 0.01858 86.15)",
+          "oklch(95% 0.01858 86.15)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Blue Ink",
+        "tonalRamp": [
+          "oklch(15% 0.04909 247.36)",
+          "oklch(26% 0.04909 247.36)",
+          "oklch(38% 0.04909 247.36)",
+          "oklch(49% 0.04909 247.36)",
+          "oklch(61% 0.04909 247.36)",
+          "oklch(72% 0.04909 247.36)",
+          "oklch(84% 0.04909 247.36)",
+          "oklch(95% 0.04909 247.36)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Slate",
+        "tonalRamp": [
+          "oklch(15% 0.03815 237.67)",
+          "oklch(26% 0.03815 237.67)",
+          "oklch(38% 0.03815 237.67)",
+          "oklch(49% 0.03815 237.67)",
+          "oklch(61% 0.03815 237.67)",
+          "oklch(72% 0.03815 237.67)",
+          "oklch(84% 0.03815 237.67)",
+          "oklch(95% 0.03815 237.67)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm White",
+        "tonalRamp": [
+          "oklch(15% 0.01422 84.58)",
+          "oklch(26% 0.01422 84.58)",
+          "oklch(38% 0.01422 84.58)",
+          "oklch(49% 0.01422 84.58)",
+          "oklch(61% 0.01422 84.58)",
+          "oklch(72% 0.01422 84.58)",
+          "oklch(84% 0.01422 84.58)",
+          "oklch(95% 0.01422 84.58)"
+        ]
+      },
+      "paper-deep": {
+        "role": "neutral",
+        "displayName": "Inset Ivory",
+        "tonalRamp": [
+          "oklch(15% 0.02261 87.15)",
+          "oklch(26% 0.02261 87.15)",
+          "oklch(38% 0.02261 87.15)",
+          "oklch(49% 0.02261 87.15)",
+          "oklch(61% 0.02261 87.15)",
+          "oklch(72% 0.02261 87.15)",
+          "oklch(84% 0.02261 87.15)",
+          "oklch(95% 0.02261 87.15)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Soft Rule",
+        "tonalRamp": [
+          "oklch(15% 0.02050 106.84)",
+          "oklch(26% 0.02050 106.84)",
+          "oklch(38% 0.02050 106.84)",
+          "oklch(49% 0.02050 106.84)",
+          "oklch(61% 0.02050 106.84)",
+          "oklch(72% 0.02050 106.84)",
+          "oklch(84% 0.02050 106.84)",
+          "oklch(95% 0.02050 106.84)"
+        ]
+      },
+      "brass": {
+        "role": "primary",
+        "displayName": "Aged Brass",
+        "tonalRamp": [
+          "oklch(15% 0.11348 73.33)",
+          "oklch(26% 0.11348 73.33)",
+          "oklch(38% 0.11348 73.33)",
+          "oklch(49% 0.11348 73.33)",
+          "oklch(61% 0.11348 73.33)",
+          "oklch(72% 0.11348 73.33)",
+          "oklch(84% 0.11348 73.33)",
+          "oklch(95% 0.11348 73.33)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Slate Blue Accent",
+        "tonalRamp": [
+          "oklch(15% 0.06538 242.41)",
+          "oklch(26% 0.06538 242.41)",
+          "oklch(38% 0.06538 242.41)",
+          "oklch(49% 0.06538 242.41)",
+          "oklch(61% 0.06538 242.41)",
+          "oklch(72% 0.06538 242.41)",
+          "oklch(84% 0.06538 242.41)",
+          "oklch(95% 0.06538 242.41)"
+        ]
+      },
+      "nav": {
+        "role": "primary",
+        "displayName": "Harbour Navy",
+        "tonalRamp": [
+          "oklch(15% 0.04737 242.82)",
+          "oklch(26% 0.04737 242.82)",
+          "oklch(38% 0.04737 242.82)",
+          "oklch(49% 0.04737 242.82)",
+          "oklch(61% 0.04737 242.82)",
+          "oklch(72% 0.04737 242.82)",
+          "oklch(84% 0.04737 242.82)",
+          "oklch(95% 0.04737 242.82)"
+        ]
+      },
+      "nav-text": {
+        "role": "neutral",
+        "displayName": "Navigation Cream",
+        "tonalRamp": [
+          "oklch(15% 0.03760 86.89)",
+          "oklch(26% 0.03760 86.89)",
+          "oklch(38% 0.03760 86.89)",
+          "oklch(49% 0.03760 86.89)",
+          "oklch(61% 0.03760 86.89)",
+          "oklch(72% 0.03760 86.89)",
+          "oklch(84% 0.03760 86.89)",
+          "oklch(95% 0.03760 86.89)"
+        ]
+      },
+      "dusk-sky": {
+        "role": "neutral",
+        "displayName": "Dusk Fog Blue",
+        "tonalRamp": [
+          "oklch(15% 0.06152 253.00)",
+          "oklch(26% 0.06152 253.00)",
+          "oklch(38% 0.06152 253.00)",
+          "oklch(49% 0.06152 253.00)",
+          "oklch(61% 0.06152 253.00)",
+          "oklch(72% 0.06152 253.00)",
+          "oklch(84% 0.06152 253.00)",
+          "oklch(95% 0.06152 253.00)"
+        ]
+      },
+      "dusk-sky-low": {
+        "role": "neutral",
+        "displayName": "Dusk Low Warm Haze",
+        "tonalRamp": [
+          "oklch(15% 0.04406 242.90)",
+          "oklch(26% 0.04406 242.90)",
+          "oklch(38% 0.04406 242.90)",
+          "oklch(49% 0.04406 242.90)",
+          "oklch(61% 0.04406 242.90)",
+          "oklch(72% 0.04406 242.90)",
+          "oklch(84% 0.04406 242.90)",
+          "oklch(95% 0.04406 242.90)"
+        ]
+      },
+      "dusk-ink": {
+        "role": "neutral",
+        "displayName": "Dusk Blue Ink",
+        "tonalRamp": [
+          "oklch(15% 0.02823 86.65)",
+          "oklch(26% 0.02823 86.65)",
+          "oklch(38% 0.02823 86.65)",
+          "oklch(49% 0.02823 86.65)",
+          "oklch(61% 0.02823 86.65)",
+          "oklch(72% 0.02823 86.65)",
+          "oklch(84% 0.02823 86.65)",
+          "oklch(95% 0.02823 86.65)"
+        ]
+      },
+      "dusk-muted": {
+        "role": "neutral",
+        "displayName": "Dusk Quiet Slate",
+        "tonalRamp": [
+          "oklch(15% 0.01482 213.11)",
+          "oklch(26% 0.01482 213.11)",
+          "oklch(38% 0.01482 213.11)",
+          "oklch(49% 0.01482 213.11)",
+          "oklch(61% 0.01482 213.11)",
+          "oklch(72% 0.01482 213.11)",
+          "oklch(84% 0.01482 213.11)",
+          "oklch(95% 0.01482 213.11)"
+        ]
+      },
+      "dusk-paper": {
+        "role": "neutral",
+        "displayName": "Dusk Warm White",
+        "tonalRamp": [
+          "oklch(15% 0.04288 246.71)",
+          "oklch(26% 0.04288 246.71)",
+          "oklch(38% 0.04288 246.71)",
+          "oklch(49% 0.04288 246.71)",
+          "oklch(61% 0.04288 246.71)",
+          "oklch(72% 0.04288 246.71)",
+          "oklch(84% 0.04288 246.71)",
+          "oklch(95% 0.04288 246.71)"
+        ]
+      },
+      "dusk-paper-deep": {
+        "role": "neutral",
+        "displayName": "Dusk Inset Ivory",
+        "tonalRamp": [
+          "oklch(15% 0.03941 246.45)",
+          "oklch(26% 0.03941 246.45)",
+          "oklch(38% 0.03941 246.45)",
+          "oklch(49% 0.03941 246.45)",
+          "oklch(61% 0.03941 246.45)",
+          "oklch(72% 0.03941 246.45)",
+          "oklch(84% 0.03941 246.45)",
+          "oklch(95% 0.03941 246.45)"
+        ]
+      },
+      "dusk-line": {
+        "role": "neutral",
+        "displayName": "Dusk Soft Rule",
+        "tonalRamp": [
+          "oklch(15% 0.03328 242.15)",
+          "oklch(26% 0.03328 242.15)",
+          "oklch(38% 0.03328 242.15)",
+          "oklch(49% 0.03328 242.15)",
+          "oklch(61% 0.03328 242.15)",
+          "oklch(72% 0.03328 242.15)",
+          "oklch(84% 0.03328 242.15)",
+          "oklch(95% 0.03328 242.15)"
+        ]
+      },
+      "dusk-brass": {
+        "role": "primary",
+        "displayName": "Dusk Aged Brass",
+        "tonalRamp": [
+          "oklch(15% 0.09170 81.23)",
+          "oklch(26% 0.09170 81.23)",
+          "oklch(38% 0.09170 81.23)",
+          "oklch(49% 0.09170 81.23)",
+          "oklch(61% 0.09170 81.23)",
+          "oklch(72% 0.09170 81.23)",
+          "oklch(84% 0.09170 81.23)",
+          "oklch(95% 0.09170 81.23)"
+        ]
+      },
+      "dusk-accent": {
+        "role": "primary",
+        "displayName": "Dusk Slate Blue Accent",
+        "tonalRamp": [
+          "oklch(15% 0.06270 236.82)",
+          "oklch(26% 0.06270 236.82)",
+          "oklch(38% 0.06270 236.82)",
+          "oklch(49% 0.06270 236.82)",
+          "oklch(61% 0.06270 236.82)",
+          "oklch(72% 0.06270 236.82)",
+          "oklch(84% 0.06270 236.82)",
+          "oklch(95% 0.06270 236.82)"
+        ]
+      },
+      "dusk-nav": {
+        "role": "primary",
+        "displayName": "Dusk Harbour Navy",
+        "tonalRamp": [
+          "oklch(15% 0.04009 246.73)",
+          "oklch(26% 0.04009 246.73)",
+          "oklch(38% 0.04009 246.73)",
+          "oklch(49% 0.04009 246.73)",
+          "oklch(61% 0.04009 246.73)",
+          "oklch(72% 0.04009 246.73)",
+          "oklch(84% 0.04009 246.73)",
+          "oklch(95% 0.04009 246.73)"
+        ]
+      },
+      "scene-stone": {
+        "role": "secondary",
+        "displayName": "Ochre Stone",
+        "tonalRamp": [
+          "oklch(15% 0.05036 79.07)",
+          "oklch(26% 0.05036 79.07)",
+          "oklch(38% 0.05036 79.07)",
+          "oklch(49% 0.05036 79.07)",
+          "oklch(61% 0.05036 79.07)",
+          "oklch(72% 0.05036 79.07)",
+          "oklch(84% 0.05036 79.07)",
+          "oklch(95% 0.05036 79.07)"
+        ]
+      },
+      "scene-wood": {
+        "role": "secondary",
+        "displayName": "Warm Timber",
+        "tonalRamp": [
+          "oklch(15% 0.05862 51.77)",
+          "oklch(26% 0.05862 51.77)",
+          "oklch(38% 0.05862 51.77)",
+          "oklch(49% 0.05862 51.77)",
+          "oklch(61% 0.05862 51.77)",
+          "oklch(72% 0.05862 51.77)",
+          "oklch(84% 0.05862 51.77)",
+          "oklch(95% 0.05862 51.77)"
+        ]
+      },
+      "scene-roof": {
+        "role": "secondary",
+        "displayName": "Slate Roof",
+        "tonalRamp": [
+          "oklch(15% 0.06512 246.52)",
+          "oklch(26% 0.06512 246.52)",
+          "oklch(38% 0.06512 246.52)",
+          "oklch(49% 0.06512 246.52)",
+          "oklch(61% 0.06512 246.52)",
+          "oklch(72% 0.06512 246.52)",
+          "oklch(84% 0.06512 246.52)",
+          "oklch(95% 0.06512 246.52)"
+        ]
+      },
+      "scene-brass": {
+        "role": "secondary",
+        "displayName": "Lantern Brass",
+        "tonalRamp": [
+          "oklch(15% 0.10704 78.94)",
+          "oklch(26% 0.10704 78.94)",
+          "oklch(38% 0.10704 78.94)",
+          "oklch(49% 0.10704 78.94)",
+          "oklch(61% 0.10704 78.94)",
+          "oklch(72% 0.10704 78.94)",
+          "oklch(84% 0.10704 78.94)",
+          "oklch(95% 0.10704 78.94)"
+        ]
+      },
+      "scene-ink": {
+        "role": "secondary",
+        "displayName": "Exhibit Ink",
+        "tonalRamp": [
+          "oklch(15% 0.04780 249.36)",
+          "oklch(26% 0.04780 249.36)",
+          "oklch(38% 0.04780 249.36)",
+          "oklch(49% 0.04780 249.36)",
+          "oklch(61% 0.04780 249.36)",
+          "oklch(72% 0.04780 249.36)",
+          "oklch(84% 0.04780 249.36)",
+          "oklch(95% 0.04780 249.36)"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": {"displayName": "Workmark Display", "purpose": "Name, archive, section, and project titles."},
-      "label": {"displayName": "File Mono", "purpose": "Dates, taxonomy, navigation, and work-file metadata."}
+      "display": {
+        "displayName": "Identity Display",
+        "purpose": "The person's name above the overview; responsive mobile size remains in source."
+      },
+      "headline": {
+        "displayName": "Entry Headline",
+        "purpose": "The current case title; container-responsive and mobile/wide overrides apply."
+      },
+      "title": {
+        "displayName": "Island Directory Title",
+        "purpose": "Names the current destination above its content-derived directory."
+      },
+      "body": {
+        "displayName": "Evidence Body",
+        "purpose": "Selectable entry prose: 18px desktop / 17px mobile at the default root, 1.85 line height and 70ch measure."
+      },
+      "label": {
+        "displayName": "Floating Island Label",
+        "purpose": "Readable HTML place signs attached to the three-dimensional scene."
+      },
+      "diagram-body": {
+        "displayName": "Diagram Evidence",
+        "purpose": "Source-backed evidence using root-relative 18px / 17px reading roles; supporting diagram labels remain at least 16px."
+      }
     },
-    "shadows": [{"name": "paper-stack", "value": "10px 12px 0 rgba(23, 39, 51, 0.08)", "purpose": "Separates the layered first-viewport work file from the paper ground."}],
-    "motion": [{"name": "signal-transition", "value": "180ms ease", "purpose": "Links and navigation respond without distracting from reading."}],
-    "breakpoints": [{"name": "mobile", "value": "800px"}, {"name": "compact", "value": "480px"}]
+    "shadows": [
+      {
+        "name": "reader-day",
+        "value": "0 20px 70px #203b5124",
+        "purpose": "Root --shadow for panels, dialogs, résumé and diagram surfaces in daylight."
+      },
+      {
+        "name": "reader-dusk",
+        "value": "0 20px 70px #0b19295c",
+        "purpose": "The dusk override of --shadow."
+      },
+      {
+        "name": "primary-action",
+        "value": "0 8px 20px #263d5020",
+        "purpose": "Small structural lift under the main explore action."
+      },
+      {
+        "name": "floating-sign",
+        "value": "0 5px 13px #233b5126",
+        "purpose": "Separation for island and exhibit HTML labels."
+      },
+      {
+        "name": "diagram-hover",
+        "value": "0 3px 9px color-mix(in srgb, var(--diagram-selected) 18%, transparent)",
+        "purpose": "Marker hover on hover-capable devices only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Root easing used for Canvas readiness, not a universal Motion easing."
+      },
+      {
+        "name": "canvas-ready",
+        "value": ".65s",
+        "purpose": "Canvas opacity reveal after scene readiness."
+      },
+      {
+        "name": "panel-close",
+        "value": "180ms",
+        "purpose": "Navigation closing delay before candidate-image preparation."
+      },
+      {
+        "name": "panel-close-reduced",
+        "value": "80ms",
+        "purpose": "Closing delay when motion is reduced or paused."
+      },
+      {
+        "name": "image-preparation-timeout",
+        "value": "2500ms",
+        "purpose": "Bounded preparation on navigation; not a direct-route initial-load guarantee."
+      },
+      {
+        "name": "camera-smooth-time",
+        "value": "0.5",
+        "purpose": "CameraControls smoothTime in seconds; disabled for initial/reduced travel, not a fixed duration."
+      },
+      {
+        "name": "camera-rest-threshold",
+        "value": "0.012",
+        "purpose": "CameraControls settlement threshold."
+      },
+      {
+        "name": "reader-transition",
+        "value": ".24s",
+        "purpose": "Opacity and 16px vertical reveal of HTML reader."
+      },
+      {
+        "name": "intro-transition",
+        "value": ".28s",
+        "purpose": "Opacity and 8px vertical offset of identity introduction."
+      },
+      {
+        "name": "html-reduced-transition",
+        "value": ".08s",
+        "purpose": "Explicit Motion duration under reduced motion or pause."
+      },
+      {
+        "name": "css-reduced-transition",
+        "value": ".01ms",
+        "purpose": "CSS reduced-motion override for transition and animation duration; separate from Motion configuration."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-viewport-max",
+        "value": "760px"
+      },
+      {
+        "name": "tablet-viewport-min",
+        "value": "761px"
+      },
+      {
+        "name": "tablet-viewport-max",
+        "value": "1100px"
+      },
+      {
+        "name": "wide-viewport-min",
+        "value": "1800px"
+      },
+      {
+        "name": "reader-container-max",
+        "value": "1000px"
+      },
+      {
+        "name": "diagram-container-min",
+        "value": "600px"
+      }
+    ]
   },
   "components": [
-    {"name": "Signal link", "kind": "nav", "refersTo": "signal-link", "description": "A direct action rendered as an editorial file annotation.", "html": "<a class=\"ds-signal-link\" href=\"#work\">VIEW SELECTED WORK <span>↓</span></a>", "css": ".ds-signal-link { display: inline-flex; gap: .65rem; padding: .8rem 0; border-bottom: 1px solid #145a78; color: #172733; font: 500 .7rem/1.5 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; transition: color .18s ease, border-color .18s ease, gap .18s ease; } .ds-signal-link:hover { gap: 1rem; color: #145a78; border-color: #e6b84f; }"},
-    {"name": "Document stack", "kind": "custom", "refersTo": "document-stack", "description": "Three offset paper sheets establish the first viewport's workbench metaphor.", "html": "<div class=\"ds-document-stack\"><div class=\"ds-document-sheet ds-document-sheet-back\"></div><div class=\"ds-document-sheet ds-document-sheet-front\"><span>FILE / 001</span><strong>REAL WORK</strong></div></div>", "css": ".ds-document-stack { position: relative; width: 280px; aspect-ratio: 4 / 5; } .ds-document-sheet { position: absolute; inset: 0; border: 1px solid rgba(23,39,51,.42); background: #f3efe7; box-shadow: 10px 12px 0 rgba(23,39,51,.08); } .ds-document-sheet-back { transform: translate(-18px,18px) rotate(-7deg); background: #d8d1c4; } .ds-document-sheet-front { display: flex; flex-direction: column; justify-content: space-between; padding: 2rem; color: #172733; }"},
-    {"name": "Project entry", "kind": "custom", "refersTo": "project-entry", "description": "A full-width project record joining artifact, contribution, and outcome without a card shell.", "html": "<article class=\"ds-project-entry\"><span class=\"ds-project-beacon\">01</span><h3>NOJV</h3><p>Open-source online judge platform.</p></article>", "css": ".ds-project-entry { display: grid; grid-template-columns: 4rem minmax(0,1fr); gap: 1.5rem; padding: 2.4rem 0 7rem; border-top: 1px solid rgba(23,39,51,.18); } .ds-project-beacon { color: #145a78; font: 600 .64rem/1.5 ui-monospace, monospace; letter-spacing: .08em; } .ds-project-entry h3 { color: #172733; font: 600 clamp(2.6rem,6vw,6.6rem)/.86 'Geist Variable', sans-serif; letter-spacing: -.085em; }"}
+    {
+      "name": "Explore action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary island-entry action; fixed hover color in both lighting states.",
+      "html": "<button type=\"button\" class=\"ds-primary\">探索作品 <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></button>",
+      "css": ".ds-primary{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);display:flex;align-items:center;gap:20px;padding:13px 19px;background:var(--nav, #253f53);color:var(--nav-text, #fff3d8);border:0;border-radius:6px;font-size:14px;font-weight:700;box-shadow:0 8px 20px #263d5020;cursor:pointer;}.ds-primary:hover{background:#3b6079;}.ds-primary:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:4px;}.ds-primary:disabled{cursor:default;opacity:.45;}"
+    },
+    {
+      "name": "Underlined action",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Secondary action; the source has no distinct hover or pressed animation.",
+      "html": "<button type=\"button\" class=\"ds-text\">關於我與學歷</button>",
+      "css": ".ds-text{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);background:transparent;color:var(--ink, #233b51);border:0;padding:10px 0;font-size:13px;text-decoration:underline;text-underline-offset:4px;cursor:pointer;}.ds-text:hover{color:var(--ink, #233b51);}.ds-text:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:4px;}.ds-text:disabled{cursor:default;opacity:.45;}"
+    },
+    {
+      "name": "Circular control",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "Pause-control appearance; the preview does not run scene animation.",
+      "html": "<button type=\"button\" class=\"ds-icon\" aria-label=\"暫停動態\" aria-pressed=\"false\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"14\" y=\"3\" width=\"5\" height=\"18\" rx=\"1\"></rect><rect x=\"5\" y=\"3\" width=\"5\" height=\"18\" rx=\"1\"></rect></svg></button>",
+      "css": ".ds-icon{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex-shrink:0;border:0;border-radius:50%;background:transparent;color:var(--ink, #233b51);cursor:pointer;}.ds-icon:hover{background:color-mix(in srgb,var(--ink, #233b51) 8%,transparent);}.ds-icon:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:4px;}.ds-icon:disabled{cursor:default;opacity:.45;}"
+    },
+    {
+      "name": "Work filters",
+      "kind": "chip",
+      "refersTo": "work-filter",
+      "description": "Native pressed-state filters, not decorative status badges; no separate authored hover fill.",
+      "html": "<div class=\"ds-filters\" role=\"group\" aria-label=\"作品分類\"><button type=\"button\" class=\"ds-filter\" aria-pressed=\"true\">全部</button><button type=\"button\" class=\"ds-filter\" aria-pressed=\"false\">大型專案</button><button type=\"button\" class=\"ds-filter\" aria-pressed=\"false\">Side Projects</button></div>",
+      "css": ".ds-filters{display:flex;gap:8px;flex-wrap:wrap;}.ds-filter{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);padding:7px 12px;font-size:14px;min-height:44px;border:0;border-radius:4px;background:var(--paper-deep, #eee7d7);color:var(--muted, #536b7b);cursor:pointer;}.ds-filter:hover{background:var(--paper-deep, #eee7d7);}.ds-filter[aria-pressed=true]{background:var(--nav, #253f53);color:var(--nav-text, #fff3d8);}.ds-filter:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:4px;}"
+    },
+    {
+      "name": "Work search",
+      "kind": "input",
+      "refersTo": "work-search",
+      "description": "Search wrapper and native input; focus is the input outline, with no invented validation state.",
+      "html": "<label class=\"ds-search\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m21 21-4.34-4.34\"></path><circle cx=\"11\" cy=\"11\" r=\"8\"></circle></svg><input class=\"ds-search-input\" type=\"search\" aria-label=\"搜尋作品\" placeholder=\"搜尋作品、技術或功能\" /></label>",
+      "css": ".ds-search{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);display:flex;align-items:center;gap:10px;background:var(--paper-deep, #eee7d7);color:var(--ink, #233b51);padding:11px 14px;border-radius:5px;border:1px solid var(--line, #c8c8b9);}.ds-search svg{flex:none;}.ds-search-input{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);width:100%;min-width:0;border:0;background:transparent;font-size:16px;color:var(--ink, #233b51);caret-color:var(--brass, #b58032);}.ds-search-input::placeholder{color:var(--muted, #536b7b);}.ds-search-input:hover{background:transparent;}.ds-search-input:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:8px;}"
+    },
+    {
+      "name": "Reading surface",
+      "kind": "card",
+      "refersTo": "reader-panel",
+      "description": "A flow-positioned excerpt of the scrolling reader with its actual toolbar and heading styles; not a modal.",
+      "html": "<aside class=\"ds-panel\" aria-label=\"閱讀區\"><div class=\"ds-toolbar\"><button type=\"button\" class=\"ds-back\">返回全景</button><button type=\"button\" class=\"ds-close\" aria-label=\"關閉閱讀區\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M18 6 6 18\"></path><path d=\"m6 6 12 12\"></path></svg></button></div><header class=\"ds-heading\"><h1 class=\"ds-heading-title\">作品與經歷</h1><p class=\"ds-summary\">完整內容與來源</p></header></aside>",
+      "css": ".ds-panel{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);width:min(1200px,76vw);overflow:auto;overscroll-behavior:contain;background:var(--paper, #fffaf0);color:var(--ink, #233b51);border:1px solid color-mix(in srgb,var(--line, #c8c8b9) 75%,transparent);border-radius:12px;box-shadow:var(--shadow,0 20px 70px #203b5124);scrollbar-gutter:stable;container-type:inline-size;}.ds-toolbar{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--paper, #fffaf0);border-bottom:1px solid var(--line, #c8c8b9);padding:9px 18px;}.ds-back{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);display:flex;align-items:center;gap:9px;font-size:14px;min-height:44px;border:0;background:transparent;color:var(--ink, #233b51);cursor:pointer;}.ds-back:hover{color:var(--brass, #b58032);}.ds-close{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:var(--ink, #233b51);cursor:pointer;}.ds-close:hover{background:color-mix(in srgb,var(--ink, #233b51) 8%,transparent);}.ds-back:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:4px;}.ds-close:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:4px;}.ds-heading{padding:29px 32px 25px;}.ds-heading-title{font-size:clamp(26px,3.8cqw,44px);font-weight:800;line-height:1.2;letter-spacing:-.025em;margin:0 0 12px;overflow-wrap:anywhere;}.ds-summary{font-size:1.125rem;line-height:1.8;margin:0 0 13px;max-width:70ch;}@media(max-width:760px){.ds-panel{width:auto;border-radius:10px;}.ds-heading{padding:24px 20px 20px;}.ds-heading-title{font-size:28px;}}"
+    },
+    {
+      "name": "Island sign",
+      "kind": "button",
+      "refersTo": "island-label",
+      "description": "Warm physical-place label; active and hover share the navy sign treatment.",
+      "html": "<button type=\"button\" class=\"ds-island-label\"><span>作品工坊</span><svg width=\"17\" height=\"17\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M5 10h10m-4-4 4 4-4 4\" /></svg></button>",
+      "css": ".ds-island-label{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);display:flex;align-items:center;gap:10px;padding:9px 13px;background:#fff5de;color:#2a4559;border:1px solid #bdae8d;border-radius:5px;box-shadow:0 5px 13px #233b5126;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer;}.ds-island-label svg{fill:none;stroke:currentColor;stroke-width:1.5;flex:none;}.ds-island-label:hover,.ds-island-label.ds-active{background:#294d66;color:#fff4da;border-color:#dcb572;}.ds-island-label:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:4px;}@media(max-width:760px){.ds-island-label{font-size:11px;gap:3px;padding:7px 8px;max-width:120px;}.ds-island-label svg{display:none;}}"
+    },
+    {
+      "name": "Exhibit sign",
+      "kind": "button",
+      "refersTo": "exhibit-label",
+      "description": "Compact project-exhibit label; actual entry identity is supplied by content at runtime.",
+      "html": "<button type=\"button\" class=\"ds-exhibit-label\">NOJV</button>",
+      "css": ".ds-exhibit-label{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);display:flex;align-items:center;gap:10px;padding:6px 10px;font-size:12px;font-weight:700;white-space:nowrap;background:#284861;color:#fff3d5;border:1px solid #c7a368;border-radius:3px;box-shadow:0 5px 13px #233b5126;cursor:pointer;}.ds-exhibit-label:hover{background:#446c86;}.ds-exhibit-label:focus-visible{outline:3px solid var(--brass, #b58032);outline-offset:4px;}"
+    },
+    {
+      "name": "Evidence diagram nodes",
+      "kind": "custom",
+      "refersTo": "diagram-node",
+      "description": "Unordered source-backed node markers, shown selected and unselected; SVG dots are not numbered steps.",
+      "html": "<ul class=\"ds-nodes\" aria-label=\"選擇證據節點\"><li class=\"ds-node\"><button type=\"button\" class=\"ds-node-button\" aria-pressed=\"true\"><span class=\"ds-marker\" aria-hidden=\"true\"><svg width=\"8\" height=\"8\" viewBox=\"0 0 8 8\" focusable=\"false\"><circle cx=\"4\" cy=\"4\" r=\"2.5\" fill=\"currentColor\" /></svg></span><span class=\"ds-node-label\">系統功能</span></button></li><li class=\"ds-node\"><button type=\"button\" class=\"ds-node-button\" aria-pressed=\"false\"><span class=\"ds-marker\" aria-hidden=\"true\"><svg width=\"8\" height=\"8\" viewBox=\"0 0 8 8\" focusable=\"false\"><circle cx=\"4\" cy=\"4\" r=\"2.5\" fill=\"currentColor\" /></svg></span><span class=\"ds-node-label\">個人貢獻</span></button></li></ul>",
+      "css": ".ds-nodes{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);display:flex;list-style:none;margin:0;padding:0;background:var(--paper-deep, #eee7d7);}.ds-node{width:min(31%,132px);margin:0;padding:0;}.ds-node::marker{content:'';}.ds-node-button{font-family:var(--sans, 'Manrope Variable','Noto Sans TC Variable',sans-serif);display:flex;flex-direction:column;align-items:center;width:100%;min-height:88px;margin:0;padding:0 2px 4px;border:0;border-radius:6px;background:transparent;color:var(--ink, #233b51);font-size:.875rem;font-weight:650;line-height:1.35;text-align:center;cursor:pointer;}.ds-marker{display:grid;place-items:center;flex:0 0 44px;width:44px;border:1px solid var(--brass, #b58032);border-radius:50%;background:var(--paper, #fffaf0);color:var(--ink, #233b51);}.ds-node-label{display:block;max-width:100%;margin-top:10px;padding:2px 4px;background:var(--paper-deep, #eee7d7);overflow-wrap:anywhere;text-wrap:balance;}.ds-node-button[aria-pressed=true] .ds-marker{background:var(--nav, #253f53);color:var(--nav-text, #fff3d8);border-color:var(--nav, #253f53);}.ds-node-button[aria-pressed=true] .ds-node-label{text-decoration:underline;text-decoration-color:var(--brass, #b58032);text-decoration-thickness:2px;text-underline-offset:4px;}.ds-node-button:focus-visible{outline:3px solid var(--accent, #305774);outline-offset:4px;}@media(hover:hover){.ds-node-button:hover .ds-marker{border-color:var(--accent, #305774);box-shadow:0 3px 9px color-mix(in srgb,var(--nav, #253f53) 18%,transparent);}}@media(forced-colors:active){.ds-node-button[aria-pressed=true] .ds-marker{outline:3px solid Highlight;}}"
+    }
   ],
   "narrative": {
-    "northStar": "The Digital Print Workbench",
-    "overview": "A paper-first engineering archive where files, annotations, and real artifacts create the page rhythm.",
-    "keyCharacteristics": ["layered work file", "drafting blue and registration yellow", "full-width project records", "quiet editorial motion"],
-    "rules": [{"name": "The Registration Rule", "body": "Blue identifies information; yellow marks a file, a focus state, or attention.", "section": "colors"}],
-    "dos": ["Do use screenshots as source material.", "Do keep contribution and outcome beside the project."],
-    "donts": ["Don't use star fields or space metaphors.", "Don't use rounded card grids."]
+    "northStar": "The Miniature Fantasy Archipelago",
+    "overview": "A connected miniature archipelago makes real engineering work a place to visit. Fog-blue air, navy roofs, ochre stone, warm timber and brass fixtures give the world a handcrafted scale. Real screenshots belong to physical exhibits; warm-white HTML reading surfaces keep detailed evidence legible.\n\nDay and dusk change the light and reading palette without changing the geography or information hierarchy. Controls are tactile and restrained; movement carries the visitor between places, while ordinary scrolling belongs to reading. The approved replacement rejects the former pixel-office, parchment-book and guild runtime identities, not the factual résumé they once presented.",
+    "keyCharacteristics": [
+      "One continuous three-dimensional world with six named destinations.",
+      "Material warmth against fog-blue air and navy structure.",
+      "Selectable bilingual HTML evidence alongside real product imagery.",
+      "Click-driven travel with keyboard, reduced-motion and document access paths."
+    ],
+    "rules": [
+      {
+        "name": "The Same World Rule",
+        "body": "Day and dusk change atmosphere and reading contrast, not destination identity or content.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readable Evidence Rule",
+        "body": "Keep résumé prose as selectable HTML; never rasterize text or shorten source content to fit a decorative object.",
+        "section": "typography"
+      },
+      {
+        "name": "The Material Separation Rule",
+        "body": "Use scene materials for place and HTML surfaces for reading; a warm-white panel is not simulated parchment.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the same six-destination geography and current content across day and dusk.",
+      "Do keep every current public entry reachable through content-derived directories and complete HTML documents.",
+      "Do retain image provenance, source qualifications and readable missing-image states.",
+      "Do keep native reader scrolling, visible keyboard focus and reduced-motion access independent of scene travel.",
+      "Do use the final cascade and current source as token evidence, including mobile overrides and rem-based diagram heights."
+    ],
+    "donts": [
+      "Don't restore Remotion, SmoothUI, pixel-office, book or guild runtime layers.",
+      "Don't turn the scene into a scroll-driven camera, numbered résumé slideshow or generic parchment modal.",
+      "Don't rasterize résumé text, freeze the inventory at 13 projects or fabricate evidence for a scene prop.",
+      "Don't treat preview tonal ramps as implemented tokens or documentation checks as accessibility certification.",
+      "Don't claim final review approval, deployment or live-service verification from this documentation pass."
+    ]
   }
 }

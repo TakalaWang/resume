@@ -1,0 +1,24 @@
+---
+import Base from './Base.astro';
+import { PrintButton } from '../components/site/Buttons';
+import { loadContent, type Locale } from '../lib/content';
+const { locale = 'zh' } = Astro.props as { locale?: Locale };
+const data = await loadContent(locale);
+const zh = locale === 'zh';
+// A résumé is read on paper: drop the screenshot link lists, their provenance notes and the
+// "current product screens" headings, which only make sense next to the images on case pages.
+const html = data.fullHtml
+  .replace(/<h4[^>]*>(?:現有產品畫面|Current product screens)<\/h4>/g, '')
+  .replace(/<li><a href="[^"]+\.(?:webp|png|jpe?g)">[^<]*<\/a><\/li>\s*/g, '')
+  .replace(/<ul>\s*<\/ul>/g, '')
+  .replace(/<p>(?:畫面來源說明|Screenshot provenance)[^<]*<\/p>/g, '');
+---
+<Base locale={locale} path="/resume/" title={`${data.name} · ${zh ? '完整履歷' : 'Résumé'}`} description={data.summary}>
+  <main class="mx-auto max-w-[860px] px-4 pt-28 pb-24 sm:px-6">
+    <div class="print-hide mb-6 flex flex-wrap items-center justify-between gap-3">
+      <p class="text-muted-foreground text-sm">{zh ? '建議以 A4、預設邊界列印或另存 PDF。' : 'Best printed or saved as PDF on A4 with default margins.'}</p>
+      <PrintButton client:visible label={zh ? '列印／另存 PDF' : 'Print / save PDF'} />
+    </div>
+    <article class="resume-paper reveal" set:html={html} />
+  </main>
+</Base>

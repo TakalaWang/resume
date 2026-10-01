@@ -1,0 +1,24 @@
+---
+import Base from './Base.astro';
+import WorkFilter from '../components/site/WorkFilter';
+import { loadContent, type Locale } from '../lib/content';
+import { caseHref, meta, techOf } from '../lib/view';
+const { locale } = Astro.props as { locale: Locale };
+const data = await loadContent(locale);
+const zh = locale === 'zh';
+const groups = data.groups.filter(g => ['work', 'projects', 'side'].includes(g.id))
+  .map(g => ({ id: g.id, title: g.title, items: g.entries.map(e => ({ id: e.id, href: caseHref(locale, e), title: e.title, meta: meta(e), summary: e.summary, tags: techOf(e) })) }));
+---
+<Base locale={locale} path="/work/" title={`${zh ? '全部作品' : 'All work'} · ${data.name}`} description={data.summary}>
+  <main class="mx-auto max-w-4xl px-6 pt-36 pb-32">
+    <h1 class="reveal font-extrabold text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.05] tracking-[-0.03em]">
+      {zh ? '全部作品與經歷' : 'All work & experience'}
+    </h1>
+    <p class="reveal mt-3 text-muted-foreground" style="--i:1">{zh ? '點選技術標籤來篩選。' : 'Pick technologies to filter.'}</p>
+    <WorkFilter
+      client:load
+      groups={groups}
+      labels={{ filter: zh ? '依技術篩選' : 'Filter by technology', clear: zh ? '清除' : 'Clear', empty: zh ? '沒有同時符合這些技術的作品。' : 'Nothing matches all of these technologies.', count: zh ? '共 {n} 項' : '{n} entries', more: zh ? '更多技術' : 'More technologies', less: zh ? '收合' : 'Show less' }}
+    />
+  </main>
+</Base>

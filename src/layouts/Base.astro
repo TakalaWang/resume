@@ -1,0 +1,70 @@
+---
+import '@fontsource-variable/noto-sans-tc';
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+import '../styles/site.css';
+import ScrollProgress from '../components/smoothui/scroll-progress';
+import SiteNav from '../components/site/SiteNav';
+import type { Locale } from '../lib/content';
+import { base, withBase } from '../lib/view';
+interface Props { locale: Locale; title: string; description: string; path: string }
+const { locale, title, description, path } = Astro.props;
+const zh = locale === 'zh';
+// path is locale-free ("/case/nojv/"); the switch keeps the reader on the same page.
+const other = withBase(`${zh ? '/en' : ''}${path}`);
+const canonical = new URL(withBase(`${zh ? '' : '/en'}${path}`), Astro.site).href;
+const items = [
+  { id: '/', label: zh ? '首頁' : 'Home', href: `${base(locale)}/` },
+  { id: '/work/', label: zh ? '全部作品' : 'All work', href: `${base(locale)}/work/` },
+  { id: '/resume/', label: zh ? '履歷' : 'Résumé', href: `${base(locale)}/resume/` },
+];
+---
+<!doctype html>
+<html lang={zh ? 'zh-Hant' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(withBase('/og.png'), Astro.site)} />
+    <meta property="og:locale" content={zh ? 'zh_TW' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{title}</title>
+    <link rel="icon" href={withBase('/favicon.svg')} />
+    <link rel="alternate" hreflang={zh ? 'zh-Hant' : 'en'} href={canonical} />
+    <link rel="alternate" hreflang={zh ? 'en' : 'zh-Hant'} href={new URL(other, Astro.site).href} />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try {
+        const t = localStorage.getItem('theme') || 'system';
+        if (t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
+      } catch {}
+    </script>
+    <noscript><style>[style*="opacity:0"]{opacity:1!important;transform:none!important;filter:none!important}</style></noscript>
+  </head>
+  <body>
+    <ScrollProgress client:idle thickness={4} />
+    <SiteNav
+      client:load
+      items={items}
+      activeId={items.find(i => i.id === path)?.id}
+      langHref={other}
+      langLabel={zh ? 'EN' : '中文'}
+      themeLabel={zh ? '切換深淺色' : 'Toggle theme'}
+    />
+    <slot />
+    <script is:inline>
+      // Reveal each .reveal element once, as it scrolls into view (see .reveal in site.css).
+      const io = new IntersectionObserver(entries => {
+        for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }, { rootMargin: '0px 0px -10% 0px' });
+      const els = document.querySelectorAll('.reveal, .case-body > *');
+      els.forEach(el => { el.classList.add('reveal'); io.observe(el); });
+      addEventListener('beforeprint', () => els.forEach(el => el.classList.add('in')));
+    </script>
+  </body>
+</html>

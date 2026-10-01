@@ -1,0 +1,9 @@
+---
+import Layout from '../../../layouts/Case.astro';
+import { loadContent } from '../../../lib/content';
+export async function getStaticPaths() {
+  const data = await loadContent('en');
+  return data.groups.flatMap(g => g.entries.map(e => ({ params: { slug: e.id } })));
+}
+---
+<Layout locale="en" slug={Astro.params.slug}/>

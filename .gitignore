@@ -2,3 +2,12 @@ node_modules/
 .astro/
 dist/
 .DS_Store
+.playwright-cli/
+output/playwright/
+
+# Private working material: never published with the public repository.
+docs/
+assets/
+.impeccable/
+.playwright-mcp/
+.claude/

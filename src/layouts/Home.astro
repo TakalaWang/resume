@@ -1,0 +1,286 @@
+---
+import Base from './Base.astro';
+import { LinkButton } from '../components/site/Buttons';
+import { loadContent, type Locale } from '../lib/content';
+import { base, caseHref, meta, storiesOf, techOf, withBase } from '../lib/view';
+const { locale } = Astro.props as { locale: Locale };
+const data = await loadContent(locale);
+const zh = locale === 'zh';
+const group = (id: string) => data.groups.find(g => g.id === id)!.entries;
+const field = (entry: { blocks: { text: string }[] }, label: RegExp) =>
+  entry.blocks.find(b => label.test(b.text))?.text.replace(label, '');
+const papers = group('research').filter(e => e.blocks.some(b => /^(作者：|Authors: )/.test(b.text)));
+const awards = group('research').filter(e => !papers.includes(e));
+const contactLabel = (href: string) =>
+  href.startsWith('mailto:') ? 'Email' : href.includes('linkedin.com') ? 'LinkedIn' : href.includes('github.com') ? 'GitHub' : 'Blog';
+// The portfolio link is for the printed résumé; on the site itself it would point back here.
+const contacts = data.groups[0].entries[0].links.filter(l => !l.href.includes('/resume')).map(l => ({ href: l.href, label: contactLabel(l.href) }));
+const email = contacts.find(c => c.label === 'Email')!.href;
+const t = {
+  experience: zh ? '經歷' : 'Experience', projects: zh ? '主要專案' : 'Selected projects', side: zh ? '其他作品' : 'Side projects',
+  research: zh ? '研究與獎項' : 'Research & recognition', community: zh ? '社群' : 'Community',
+  more: zh ? '閱讀完整案例' : 'Read the case study', papers: zh ? '論文' : 'Papers', awards: zh ? '獎項' : 'Awards',
+  contact: zh ? '一起聊聊？' : "Let's talk.", contactSub: zh ? '工作、合作或技術交流，都歡迎來信。' : 'Work, collaborations, or just talking tech — write any time.',
+};
+// Hero collage: the first screenshot of each major project that has one.
+const collage = group('projects').filter(e => e.images[0]).slice(0, 3).map(e => ({ ...e.images[0], href: caseHref(locale, e) }));
+const kicker = 'font-semibold text-accent text-xs uppercase tracking-[0.22em]';
+const sectionTitle = 'mt-3 font-extrabold text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] tracking-tight';
+// Left-side section dots, like nycu.life: [anchor id, label].
+const dots: [string, string][] = [['top', zh ? '首頁' : 'Home'], ['about', zh ? '關於' : 'About'], ['experience', zh ? '經歷' : 'Experience'], ['projects', zh ? '專案' : 'Projects'], ['side', zh ? '其他作品' : 'Side'], ['research', zh ? '研究' : 'Research'], ['community', zh ? '社群' : 'Community'], ['contact', zh ? '聯絡' : 'Contact']];
+---
+<Base locale={locale} path="/" title={`${data.name} · ${data.role}`} description={data.summary}>
+
+  <!-- Hero: identity, then the key numbers. Fades back into the mist as you scroll. -->
+  <section id="top" data-section class="snap mx-auto flex min-h-svh max-w-6xl flex-col justify-center px-6 pt-28 pb-16">
+    <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+      <div>
+      <img src={withBase('/media/profile.webp')} alt={zh ? `${data.name}的個人照` : `Portrait of ${data.name}`} width="112" height="112" class="reveal mb-8 size-28 rounded-full object-cover shadow-xl ring-4 ring-card" />
+      <p class="reveal font-semibold text-accent text-xs uppercase tracking-[0.22em]" style="--i:1">Full-Stack · Cloud Infrastructure · Applied AI</p>
+      <h1 style="--i:1" class={`reveal mt-5 font-extrabold leading-[1.02] tracking-[-0.04em] ${zh ? 'text-[clamp(3.2rem,9vw,7.5rem)]' : 'text-[clamp(2.6rem,5.5vw,4.75rem)]'}`}>
+        {data.name}
+      </h1>
+      <p class="reveal mt-3 text-lg text-muted-foreground" style="--i:2">{data.englishName}</p>
+      <p class="reveal mt-8 max-w-2xl font-semibold text-[clamp(1.25rem,2.4vw,1.75rem)] leading-snug" style="--i:3">{data.role}</p>
+      <div class="reveal mt-10 flex flex-wrap items-center gap-x-6 gap-y-3" style="--i:4">
+        <LinkButton client:visible href={`${base(locale)}/resume/`} label={zh ? '完整履歷' : 'Full résumé'} />
+        {contacts.map(c => <a class="font-semibold text-foreground no-underline hover:text-accent" href={c.href}>{c.label} ↗</a>)}
+      </div>
+      </div>
+      <div class="collage relative hidden aspect-[5/4] lg:block" aria-hidden="true">
+        {collage.map((img, i) => (
+          <a href={img.href} tabindex="-1" style={`--i:${i + 2}`} class={`reveal collage-card absolute block w-[72%] overflow-hidden rounded-2xl border bg-card shadow-2xl collage-${i}`}>
+            <img src={img.src} alt="" class="aspect-[16/10] w-full object-cover object-top" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- About: the summary lights up word by word as it scrolls through. -->
+    <section id="about" data-section class="stage snap flex min-h-svh items-center py-32">
+      <div class="stage-box mx-auto grid w-full max-w-6xl items-center gap-12 px-6 lg:grid-cols-[3fr_2fr]">
+        <div class="stage-title w-fit max-w-3xl">
+          <p class={kicker}>{zh ? '關於' : 'About'}</p>
+          <p class="mt-4 text-[clamp(1.5rem,3.2vw,2.5rem)] leading-[1.45] font-bold tracking-tight text-pretty">{data.summary}</p>
+        </div>
+        <ul class="space-y-3">
+          {group('education').map((e, n) => (
+            <li style={`--i:${n}`} class="reveal from-right rounded-2xl border bg-card px-6 py-5">
+              <p class="font-bold">{e.title}</p>
+              <p class="mt-1 text-muted-foreground text-sm">{field(e, /^(學位：|Degree: )/)}</p>
+              <p class="text-muted-foreground text-sm">{field(e, /^(期間：|Period: )/)}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Experience: a timeline; the heading stays pinned while entries surface. -->
+    <section id="experience" data-section class="stage snap bg-muted/60 py-32">
+      <div class="stage-box mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_2fr]">
+        <div class="stage-title w-fit lg:sticky lg:top-32 lg:self-start">
+          <p class={kicker}>01</p>
+          <h2 class={sectionTitle}>{t.experience}</h2>
+        </div>
+        <ol class="stage-hide relative border-l-2 border-accent-soft pl-8">
+          {group('work').map((e, n) => (
+            <li class="reveal from-right relative pb-16 last:pb-0">
+              <span class="absolute top-2 -left-[41px] size-4 rounded-full border-4 border-background bg-accent" aria-hidden="true"></span>
+              <p class="font-semibold text-accent text-sm">{meta(e)}</p>
+              <h3 class="mt-1 font-extrabold text-2xl"><a class="text-foreground no-underline hover:text-accent" href={caseHref(locale, e)}>{e.title}</a></h3>
+              <p class="mt-3 text-muted-foreground leading-relaxed">{e.summary}</p>
+              <ul class="mt-4 space-y-2">
+                {storiesOf(e, 2).map(s => <li class="rounded-xl bg-card px-4 py-3 text-sm leading-relaxed shadow-sm"><span class="font-semibold">{s.title}</span>{s.result && <span class="block text-muted-foreground">{s.result}</span>}</li>)}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Projects: one full-width chapter each; the visual stays pinned while the story scrolls. -->
+    <section id="projects" data-section class="stage snap py-32">
+      <div class="stage-box mx-auto max-w-6xl px-6">
+        <div class="stage-title w-fit">
+          <p class={kicker}>02</p>
+          <h2 class={sectionTitle}>{t.projects}</h2>
+        </div>
+      </div>
+      {group('projects').map((e, i) => {
+        const image = e.images[0];
+        const stories = storiesOf(e);
+        const head = (
+          <>
+            <p class="reveal font-semibold text-accent text-sm">{meta(e)}</p>
+            <h3 class="reveal mt-2 font-extrabold text-[clamp(1.75rem,3.5vw,2.6rem)] leading-tight tracking-tight">{e.title}</h3>
+            <p class="reveal mt-4 max-w-3xl text-lg leading-relaxed">{e.summary}</p>
+          </>
+        );
+        const story = (s: { title: string; result?: string }, n: number) => (
+          <li style={`--i:${n}`} class="reveal flex gap-4 rounded-2xl border bg-card p-5">
+            <span class="font-extrabold text-accent text-2xl tabular-nums leading-none">{String(n + 1).padStart(2, '0')}</span>
+            <div><p class="font-bold leading-snug">{s.title}</p>{s.result && <p class="mt-1.5 text-muted-foreground text-sm leading-relaxed">{s.result}</p>}</div>
+          </li>
+        );
+        const foot = (
+          <>
+            <p class="reveal mt-6 text-muted-foreground text-sm">{techOf(e).slice(0, 8).join(' · ')}</p>
+            <a class="reveal mt-6 inline-block font-bold no-underline hover:underline" href={caseHref(locale, e)}>{t.more} →</a>
+          </>
+        );
+        // Without a real screenshot, the chapter goes full width instead of showing a placeholder visual.
+        if (!image) return (
+          <article class="snap mx-auto mt-24 max-w-6xl scroll-mt-28 px-6">
+            {head}
+            <ol class="mt-8 grid gap-4 lg:grid-cols-3">{stories.map(story)}</ol>
+            {foot}
+          </article>
+        );
+        return (
+          <article class="snap mx-auto mt-24 grid max-w-6xl scroll-mt-28 items-start gap-10 px-6 lg:grid-cols-2 lg:gap-16">
+            <div class={`lg:sticky lg:top-28 ${i % 2 ? 'lg:order-2' : ''}`}>
+              <a href={caseHref(locale, e)} class="block">
+                <img alt={image.alt} src={image.src} loading="lazy" class={`reveal ${i % 2 ? 'from-right' : 'from-left'} aspect-[16/10] w-full rounded-2xl border object-cover object-top shadow-2xl`} />
+              </a>
+            </div>
+            <div class="lg:min-h-[80vh] lg:py-8">
+              {head}
+              <ol class="mt-8 space-y-4">{stories.map(story)}</ol>
+              {foot}
+            </div>
+          </article>
+        );
+      })}
+    </section>
+
+    <!-- Side projects: entries with screenshots as two-column cards, the rest as a three-column row of text cards,
+         so both grids always fill their rows. -->
+    <section id="side" data-section class="stage snap bg-muted/60 py-32">
+      <div class="stage-box mx-auto max-w-6xl px-6">
+        <div class="stage-title w-fit">
+          <p class={kicker}>03</p>
+          <h2 class={sectionTitle}>{t.side}</h2>
+        </div>
+        <div class="mt-14 grid gap-5 sm:grid-cols-2">
+          {group('side').filter(e => e.images[0]).map((e, n) => (
+            <a href={caseHref(locale, e)} style={`--i:${n % 2}`} class="reveal lift group flex flex-col overflow-hidden rounded-3xl border bg-card no-underline">
+              <div class="aspect-[16/9] overflow-hidden border-b bg-muted"><img src={e.images[0].src} alt={e.images[0].alt} loading="lazy" class="h-full w-full object-cover object-top" /></div>
+              <div class="flex flex-1 flex-col p-6">
+                <h3 class="font-extrabold text-foreground text-lg group-hover:text-accent">{e.title}</h3>
+                <p class="mt-2 flex-1 text-muted-foreground text-sm leading-relaxed">{e.summary}</p>
+                <p class="mt-4 text-accent text-xs">{techOf(e).slice(0, 4).join(' · ')}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {group('side').filter(e => !e.images[0]).map((e, n) => (
+            <a href={caseHref(locale, e)} style={`--i:${n % 3}`} class="reveal lift group flex flex-col rounded-3xl border bg-card p-6 no-underline">
+              <h3 class="font-extrabold text-foreground text-lg group-hover:text-accent">{e.title}</h3>
+              <p class="mt-2 flex-1 text-muted-foreground text-sm leading-relaxed">{e.summary}</p>
+              <p class="mt-4 text-accent text-xs">{techOf(e).slice(0, 4).join(' · ')}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Research and awards. -->
+    <section id="research" data-section class="stage snap py-32">
+      <div class="stage-box mx-auto max-w-6xl px-6">
+        <div class="stage-title w-fit">
+          <p class={kicker}>04</p>
+          <h2 class={sectionTitle}>{t.research}</h2>
+        </div>
+        <div class="mt-14 grid gap-12 lg:grid-cols-[3fr_2fr]">
+          <div>
+            <h3 class="reveal font-semibold text-muted-foreground text-sm">{t.papers}</h3>
+            <ul class="mt-4 space-y-4">
+              {papers.map((e, n) => (
+                <li class="reveal" style={`--i:${n}`}><a href={caseHref(locale, e)} class="lift group block rounded-2xl border bg-card p-6 no-underline">
+                  <p class="font-semibold text-accent text-xs">{field(e, /^(發表：|Publication: )/)}</p>
+                  <p class="mt-2 font-bold text-foreground leading-snug group-hover:text-accent">{e.title}</p>
+                </a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 class="reveal font-semibold text-muted-foreground text-sm">{t.awards}</h3>
+            <ul class="mt-4 divide-y">
+              {awards.map(e => <li class="reveal py-4"><a href={caseHref(locale, e)} class="font-bold text-foreground no-underline hover:text-accent">{e.title}</a></li>)}
+              {awards.flatMap(e => e.blocks.filter(b => /^20\d\d (ICPC|NCPC|CPE)/.test(b.text))).map(b => <li class="reveal py-3 text-muted-foreground text-sm">{b.text}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community" data-section class="stage snap bg-muted/60 py-32">
+      <div class="stage-box mx-auto max-w-6xl px-6">
+        <div class="stage-title w-fit">
+          <p class={kicker}>05</p>
+          <h2 class={sectionTitle}>{t.community}</h2>
+        </div>
+        <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {group('community').map((e, n) => (
+            <a href={caseHref(locale, e)} style={`--i:${n % 3}`} class="reveal lift group rounded-3xl border bg-card p-6 no-underline">
+              <p class="font-semibold text-accent text-xs">{meta(e)}</p>
+              <h3 class="mt-2 font-extrabold text-foreground leading-snug group-hover:text-accent">{e.title}</h3>
+              <p class="mt-2 line-clamp-3 text-muted-foreground text-sm leading-relaxed">{e.summary}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing call to action. -->
+    <section id="contact" data-section class="snap mx-auto flex min-h-svh max-w-6xl flex-col items-center justify-center px-6 py-32 text-center">
+      <h2 class="reveal font-extrabold text-[clamp(2.5rem,7vw,5.5rem)] leading-none tracking-[-0.03em]">{t.contact}</h2>
+      <p class="reveal mt-6 text-lg text-muted-foreground">{t.contactSub}</p>
+      <a class="reveal mt-10 inline-block font-extrabold text-[clamp(1.25rem,3vw,2rem)] underline decoration-accent-soft decoration-4 underline-offset-8 hover:decoration-accent" href={email}>{email.replace('mailto:', '')}</a>
+      <p class="reveal mt-10 flex justify-center gap-6">{contacts.filter(c => c.label !== 'Email').map(c => <a class="font-semibold no-underline hover:underline" href={c.href}>{c.label} ↗</a>)}</p>
+      <p class="mt-24 text-muted-foreground text-sm">{zh ? `更新於 ${data.sourceDate}` : `Updated ${data.sourceDate}`}</p>
+    </section>
+  </main>
+  <nav class="section-dots" aria-label={zh ? '頁面段落' : 'Sections'}>
+    {dots.map(([id, label]) => <a href={`#${id}`} data-dot={id}><span class="dot" aria-hidden="true"></span>{label}</a>)}
+  </nav>
+  <p class="section-count" aria-hidden="true"><span data-count>1</span> / {dots.length}</p>
+  <script is:inline>
+    // Section dots and counter follow the section crossing the middle of the viewport.
+    const dotEls = [...document.querySelectorAll('[data-dot]')];
+    const countEl = document.querySelector('[data-count]');
+    const spy = new IntersectionObserver(entries => {
+      for (const e of entries) if (e.isIntersecting) {
+        const i = dotEls.findIndex(d => d.dataset.dot === e.target.id);
+        dotEls.forEach((d, n) => d.toggleAttribute('aria-current', n === i));
+        if (countEl && i >= 0) countEl.textContent = String(i + 1);
+      }
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    document.querySelectorAll('[data-section]').forEach(s => spy.observe(s));
+
+    // Section opening, like nycu.life: the title first appears centered, then moves to its place,
+    // and only then does the section's content slide in (see .stage in site.css).
+    const stages = [...document.querySelectorAll('.stage')];
+    const measure = () => stages.forEach(s => {
+      if (s.classList.contains('staged')) return;
+      const t = s.querySelector('.stage-title'), box = s.querySelector('.stage-box') || s;
+      t.style.setProperty('--shift', '0px');
+      const tr = t.getBoundingClientRect(), br = box.getBoundingClientRect();
+      t.style.setProperty('--shift', `${Math.round(br.left + br.width / 2 - (tr.left + tr.width / 2))}px`);
+    });
+    measure();
+    addEventListener('resize', measure);
+    const stager = new IntersectionObserver(entries => {
+      for (const e of entries) if (e.isIntersecting) {
+        e.target.classList.add('staging');
+        setTimeout(() => e.target.classList.add('staged'), 650);
+        stager.unobserve(e.target);
+      }
+    }, { rootMargin: '0px 0px -35% 0px' });
+    stages.forEach(s => stager.observe(s));
+    addEventListener('beforeprint', () => stages.forEach(s => s.classList.add('staging', 'staged')));
+  </script>
+</Base>
