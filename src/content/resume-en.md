@@ -1,4 +1,4 @@
-<!-- source-sha256: acc534206cbf9845b817ad817e11fe76648eccf9962f84dbc39fe2faeca18391
+<!-- source-sha256: 6b97ff63f28ebb793549e9588ab24f4f161745e6e2c38596fbce3a851051622a
 Derived English translation of ../../RESUME.md. RESUME.md is the sole editable master.
 Refresh the complete translation after editing the master; only then update this stamp.
 -->
@@ -21,7 +21,6 @@ Hsinchu / Taipei, Taiwan
 - [linkedin.com/in/takalawang](https://www.linkedin.com/in/takalawang/)
 - [github.com/TakalaWang](https://github.com/TakalaWang)
 - [Blog · takalawang.github.io](https://takalawang.github.io/)
-- [Portfolio · takalawang.github.io/resume](https://takalawang.github.io/resume/)
 
 ### Personal summary
 

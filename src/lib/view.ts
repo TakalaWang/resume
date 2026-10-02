@@ -2,6 +2,8 @@ import type { Entry, Locale } from './content';
 
 /** Prefix a root-relative path with the deploy sub-path (astro.config `base`), e.g. /resume. */
 export const withBase = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}`;
+// One-page LaTeX CV, its own repo and Pages site (TakalaWang/CV).
+export const CV_URL = 'https://takalawang.github.io/CV/';
 export const base = (locale: Locale) => withBase(locale === 'en' ? '/en' : '');
 export const caseHref = (locale: Locale, entry: Entry) => `${base(locale)}/case/${entry.id}/`;
 

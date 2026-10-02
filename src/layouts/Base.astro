@@ -6,7 +6,7 @@ import '../styles/site.css';
 import ScrollProgress from '../components/smoothui/scroll-progress';
 import SiteNav from '../components/site/SiteNav';
 import type { Locale } from '../lib/content';
-import { base, withBase } from '../lib/view';
+import { base, withBase, CV_URL } from '../lib/view';
 interface Props { locale: Locale; title: string; description: string; path: string }
 const { locale, title, description, path } = Astro.props;
 const zh = locale === 'zh';
@@ -16,7 +16,7 @@ const canonical = new URL(withBase(`${zh ? '' : '/en'}${path}`), Astro.site).hre
 const items = [
   { id: '/', label: zh ? '首頁' : 'Home', href: `${base(locale)}/` },
   { id: '/work/', label: zh ? '全部作品' : 'All work', href: `${base(locale)}/work/` },
-  { id: '/resume/', label: zh ? '履歷' : 'Résumé', href: `${base(locale)}/resume/` },
+  { id: 'cv', label: zh ? '履歷' : 'Résumé', href: CV_URL },
 ];
 ---
 <!doctype html>

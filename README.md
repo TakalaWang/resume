@@ -20,7 +20,7 @@ pnpm preview
 
 ## Routes
 
-`/` (full-width scroll narrative), `/work/` (all work), `/case/<id>/` (one page per entry), `/resume/` (full printable document), and the same under `/en/`.
+`/` (full-width scroll narrative), `/work/` (all work), `/case/<id>/` (one page per entry), and the same under `/en/`. The Résumé link goes to the one-page LaTeX CV (TakalaWang/CV, https://takalawang.github.io/CV/).
 
 ## Files
 

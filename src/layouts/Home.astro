@@ -2,7 +2,7 @@
 import Base from './Base.astro';
 import { LinkButton } from '../components/site/Buttons';
 import { loadContent, type Locale } from '../lib/content';
-import { base, caseHref, meta, storiesOf, techOf, withBase } from '../lib/view';
+import { base, caseHref, CV_URL, meta, storiesOf, techOf, withBase } from '../lib/view';
 const { locale } = Astro.props as { locale: Locale };
 const data = await loadContent(locale);
 const zh = locale === 'zh';
@@ -13,8 +13,7 @@ const papers = group('research').filter(e => e.blocks.some(b => /^(作者：|Aut
 const awards = group('research').filter(e => !papers.includes(e));
 const contactLabel = (href: string) =>
   href.startsWith('mailto:') ? 'Email' : href.includes('linkedin.com') ? 'LinkedIn' : href.includes('github.com') ? 'GitHub' : 'Blog';
-// The portfolio link is for the printed résumé; on the site itself it would point back here.
-const contacts = data.groups[0].entries[0].links.filter(l => !l.href.includes('/resume')).map(l => ({ href: l.href, label: contactLabel(l.href) }));
+const contacts = data.groups[0].entries[0].links.map(l => ({ href: l.href, label: contactLabel(l.href) }));
 const email = contacts.find(c => c.label === 'Email')!.href;
 const t = {
   experience: zh ? '經歷' : 'Experience', projects: zh ? '主要專案' : 'Selected projects', side: zh ? '其他作品' : 'Side projects',
@@ -43,7 +42,7 @@ const dots: [string, string][] = [['top', zh ? '首頁' : 'Home'], ['about', zh 
       <p class="reveal mt-3 text-lg text-muted-foreground" style="--i:2">{data.englishName}</p>
       <p class="reveal mt-8 max-w-2xl font-semibold text-[clamp(1.25rem,2.4vw,1.75rem)] leading-snug" style="--i:3">{data.role}</p>
       <div class="reveal mt-10 flex flex-wrap items-center gap-x-6 gap-y-3" style="--i:4">
-        <LinkButton client:visible href={`${base(locale)}/resume/`} label={zh ? '完整履歷' : 'Full résumé'} />
+        <LinkButton client:visible href={CV_URL} label={zh ? '履歷 PDF' : 'Résumé PDF'} />
         {contacts.map(c => <a class="font-semibold text-foreground no-underline hover:text-accent" href={c.href}>{c.label} ↗</a>)}
       </div>
       </div>

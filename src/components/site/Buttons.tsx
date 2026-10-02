@@ -8,11 +8,3 @@ export function LinkButton({ href, label, variant = "solid" }: { href: string; l
     </SmoothButton>
   );
 }
-
-export function PrintButton({ label }: { label: string }) {
-  return (
-    <SmoothButton className="[--btn-fg:var(--accent-foreground)] [--btn-hover:var(--accent-strong)] [--btn:var(--accent)]" onClick={() => window.print()} shape="pill" variant="solid">
-      {label}
-    </SmoothButton>
-  );
-}

@@ -14,10 +14,7 @@ let cases = 0;
 for (const locale of ['zh', 'en']) {
   const data = await loadContent(locale);
   const prefix = locale === 'en' ? 'en/' : '';
-  const resume = await readFile(path.join(dist, prefix, 'resume/index.html'), 'utf8');
   const index = await readFile(path.join(dist, prefix, 'work/index.html'), 'utf8');
-  const resumeText = resume.replaceAll('&#x26;', '&').replaceAll('&amp;', '&');
-  for (const group of data.groups) assert(resumeText.includes(group.title), `${locale}: résumé misses section ${group.title}`);
   for (const group of data.groups) for (const entry of group.entries) {
     const html = await readFile(path.join(dist, prefix, 'case', entry.id, 'index.html'), 'utf8');
     assert(html.includes(`<title>${entry.title.replaceAll("&", "&amp;")} · `), `${locale}/${entry.id}: missing case title`);

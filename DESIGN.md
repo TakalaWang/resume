@@ -43,7 +43,7 @@ motion: "Trigger-once reveal: slide up 24px + fade, 600ms cubic-bezier(.22,1,.36
   - A large title, the lead screenshot, then the prose.
   - Each block slides in as it is reached, with sticky tech tags on the right.
 - **`/work/`:** technology filter chips; results fade in and out.
-- **`/resume/`:** the full document, printable.
+- **Résumé:** links out to the one-page LaTeX CV at https://takalawang.github.io/CV/.
 - **Every page:** SmoothUI's floating pill navbar (hides while scrolling down), a reading-progress bar, and the light/dark toggle.
 
 ## Retired

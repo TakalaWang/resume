@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-- Astro generates bilingual routes, case studies, the complete résumé and no-JavaScript HTML.
+- Astro generates bilingual routes, case studies and no-JavaScript HTML. The one-page English CV is a separate LaTeX repository (TakalaWang/CV) published at https://takalawang.github.io/CV/.
 - Astro renders all content to HTML; React islands with Motion and SmoothUI components add scroll-driven effects, and Tailwind v4 carries the mist-blue theme.
 - Manrope Variable and Noto Sans TC Variable are self-hosted through the installed font packages.
 - The old Remotion, SmoothUI, pixel-office, book and guild frontends are retired, not alternative runtime modes or compatibility targets.
@@ -30,8 +30,8 @@ The candidate's identity and demonstrated work lead. Technology names, architect
 ## Operating Context
 
 - The identity is content first: a full-width scroll narrative with sticky project chapters (see `DESIGN.md`). Light and dark follow the system setting.
-- `/` and `/en/` are the home pages; `/work/` and `/en/work/` collect major projects, side projects and work experience. `/case/<id>/` and `/en/case/<id>/` address individual entries. `/resume/` and `/en/resume/` expose the complete printable document.
-- URL navigation, browser Back/Forward and language switching retain the destination. Printing or saving a PDF is browser-provided; no separate generated PDF download is promised.
+- `/` and `/en/` are the home pages; `/work/` and `/en/work/` collect major projects, side projects and work experience. `/case/<id>/` and `/en/case/<id>/` address individual entries. The "Résumé" navigation item and hero button link to the one-page CV PDF.
+- URL navigation, browser Back/Forward and language switching retain the destination. The CV PDF is built by the CV repository, not by this site.
 - Pages are indexable and carry canonical and Open Graph tags for https://takalawang.github.io/resume/ (GitHub Pages project site next to the blog). A local build or successful check is not evidence of public deployment or live service availability.
 
 ## Capabilities and Constraints
@@ -47,7 +47,7 @@ The candidate's identity and demonstrated work lead. Technology names, architect
 - The name and real work are primary; a slogan, decorative statistic or fantasy label must not obscure them.
 - The site is an immersive scroll narrative in mist blue: content surfaces as you scroll, but motion never hides or delays it, and there is no themed scenery. It is not a 3D world, slide deck, pixel office or book simulation.
 - Immersion must help orientation and understanding. Plain HTML text, working links and recognizable controls remain the reading interface.
-- Bilingual coverage and access to the complete résumé are commitments, not optional theme variants.
+- Bilingual coverage and a direct link to the CV are commitments, not optional theme variants.
 
 ## Evidence and Public Boundaries
 

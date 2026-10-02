@@ -16,7 +16,6 @@ Hsinchu / Taipei, Taiwan
 - [linkedin.com/in/takalawang](https://www.linkedin.com/in/takalawang/)
 - [github.com/TakalaWang](https://github.com/TakalaWang)
 - [Blog · takalawang.github.io](https://takalawang.github.io/)
-- [作品集 · takalawang.github.io/resume](https://takalawang.github.io/resume/)
 
 ### 個人摘要
 
