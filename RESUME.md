@@ -144,7 +144,7 @@ SvelteKit、TypeScript、Tailwind CSS、Hugging Face Chat-UI、Azure Speech Reco
 
 類型：Open-source online judge
 
-我發起並主要維護的開源線上評測平台，從題目、課程與競賽，到 sandbox、評測排程與 Kubernetes release 都由我設計，目前有正式課程約 300 名以上學生同時使用。
+我發起並主要維護的開源線上評測平台，從題目、課程與競賽，到 sandbox、評測排程與 Kubernetes release 都由我設計，已有 300+ 名學生在正式課程中使用，尖峰同時在線 100 人，累計 2,000+ 筆提交。
 
 - [Live](https://nojv.tw/)
 - [GitHub](https://github.com/NOJV-TW/NOJV)
@@ -431,7 +431,7 @@ Rust、Cargo、CLI、Chrome Extension、JavaScript、Discord Gateway / Slash Com
 
 #### 個人貢獻與成果
 
-- 黑客松：BUILDMODE GEN-AI HACKATHON 2026（FUTUREMODE × SITCON）總冠軍，5 人團隊。
+- 黑客松：BUILDMODE GEN-AI HACKATHON 2026（FUTUREMODE × SITCON）總冠軍（600+ 名開發者參賽），5 人團隊。
 - 負責 AI 興趣分析、資料處理與配對功能：影片語意標籤、版本化語意 embedding 的預先計算與快取、加權的個人興趣分群，以及多主題影片的觀看時間分配。
 - 建立 CI 把關的持續部署，以不可變映像發布並在部署後驗證。
 
@@ -889,11 +889,11 @@ Next.js、TypeScript、Web Audio API、STFT / FFT、SVG / CSS Animation、ffmpeg
 
 #### 其他競賽與學業獎項
 
-- 2023 ICPC — International Collegiate Programming Contest — Bronze Medal
-- 2023 NCPC — National Collegiate Programming Contest — Fourth Place
-- 2023 Formosa Speech Recognition Challenge, Hakka Pinyin — Second Place
-- 2023 Formosa Speech Recognition Challenge, Hakka Chinese Characters — Third Place
-- 2022 ICPC — International Collegiate Programming Contest — Bronze Medal
+- 2023 ICPC Asia Taoyuan Regional — Bronze Medal
+- 2023 NCPC — National Collegiate Programming Contest，大專組 — Fourth Place
+- 2023 Formosa Speech Recognition Challenge, Hakka Pinyin — Second Place（團隊）
+- 2023 Formosa Speech Recognition Challenge, Hakka Chinese Characters — Third Place（團隊）
+- 2022 ICPC Asia Taoyuan Regional — Bronze Medal
 - 2022 NCPC — National Collegiate Programming Contest — 佳作
 - 2022 CPE — Collegiate Programming Examination — Top 0.6%
 - 112 學年度臺師大資工系資訊專題競賽 — 佳作（英語口說評測系統）

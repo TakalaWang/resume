@@ -1,4 +1,4 @@
-<!-- source-sha256: 6b97ff63f28ebb793549e9588ab24f4f161745e6e2c38596fbce3a851051622a
+<!-- source-sha256: f48361ab8b49e3f9063aa3272338b0c076d4efc2996ecaf1f954d4440b47894d
 Derived English translation of ../../RESUME.md. RESUME.md is the sole editable master.
 Refresh the complete translation after editing the master; only then update this stamp.
 -->
@@ -145,7 +145,7 @@ Screenshot provenance: Voice Studio and scenario-course screens captured after p
 
 Type: Open-source online judge
 
-An open-source online judge I founded and maintain. I designed everything from problems, courses, and contests to the sandbox, judge scheduling, and Kubernetes releases, and it currently serves about 300 or more students concurrently in real courses.
+An open-source online judge I founded and maintain. I designed everything from problems, courses, and contests to the sandbox, judge scheduling, and Kubernetes releases, and 300+ students use it in live courses, with up to 100 online at once and 2,000+ submissions so far.
 
 - [Live](https://nojv.tw/)
 - [GitHub](https://github.com/NOJV-TW/NOJV)
@@ -432,7 +432,7 @@ Hackathon overall winner: imports YouTube viewing history with user consent and 
 
 #### Contributions and outcomes
 
-- Hackathon: BUILDMODE GEN-AI HACKATHON 2026 (FUTUREMODE × SITCON), overall first place with a team of 5.
+- Hackathon: BUILDMODE GEN-AI HACKATHON 2026 (FUTUREMODE × SITCON), overall first place among 600+ developers, with a team of 5.
 - Owned AI interest analysis, data processing, and matching: semantic video tags, precomputed and cached versioned semantic embeddings, weighted personal interest clustering, and watch-time allocation across multi-topic videos.
 - Built CI-gated continuous deployment that ships immutable images and verifies after each deploy.
 
@@ -890,11 +890,11 @@ Period: 2021–2026
 
 #### Other competitions and academic awards
 
-- 2023 ICPC — International Collegiate Programming Contest — Bronze Medal
-- 2023 NCPC — National Collegiate Programming Contest — Fourth Place
-- 2023 Formosa Speech Recognition Challenge, Hakka Pinyin — Second Place
-- 2023 Formosa Speech Recognition Challenge, Hakka Chinese Characters — Third Place
-- 2022 ICPC — International Collegiate Programming Contest — Bronze Medal
+- 2023 ICPC Asia Taoyuan Regional — Bronze Medal
+- 2023 NCPC — National Collegiate Programming Contest, University Division — Fourth Place
+- 2023 Formosa Speech Recognition Challenge, Hakka Pinyin — Second Place (team)
+- 2023 Formosa Speech Recognition Challenge, Hakka Chinese Characters — Third Place (team)
+- 2022 ICPC Asia Taoyuan Regional — Bronze Medal
 - 2022 NCPC — National Collegiate Programming Contest — Honorable Mention
 - 2022 CPE — Collegiate Programming Examination — Top 0.6%
 - NTNU CSIE Undergraduate Project Competition, 2023–24 — Honorable Mention (English speaking assessment system)
